@@ -12,15 +12,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_extrabold"
-        android:text="Sign Up"
+        android:text="Create New Account"
         android:textColor="#265AA8"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintHorizontal_bias="0.102"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintVertical_bias="0.056" />
 
     <EditText
         android:id="@+id/ConfirmPwSignup"
@@ -61,7 +61,7 @@
     <Button
         android:id="@+id/Signupbutton"
         android:layout_width="310dp"
-        android:layout_height="43dp"
+        android:layout_height="53dp"
         android:backgroundTint="#265AA8"
         android:text="Sign Up"
         app:cornerRadius="20dp"
@@ -147,12 +147,38 @@
     <ProgressBar
         android:id="@+id/progressBar3"
         style="?android:attr/progressBarStyle"
-        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Signupbutton" />
+
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="115dp"
+        android:layout_height="116dp"
+        android:background="@drawable/circle_shape"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132"
+        app:srcCompat="@drawable/profile2" />
+
+    <ImageView
+        android:id="@+id/profilebutton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.637"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.22"
+        app:srcCompat="@drawable/addprofile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
