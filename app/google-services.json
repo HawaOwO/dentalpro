@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "365392282595",
+    "project_id": "dentalpro-2a34a",
+    "storage_bucket": "dentalpro-2a34a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365392282595:android:c994ed13593a5c901616d6",
+        "android_client_info": {
+          "package_name": "com.example.dentalpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "365392282595-tagvnif27uv5lj545qnkp9vh7qnsnrm4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAn-T_KTvTxLWyq3JE1WxxwU-RBQdrnD4k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "365392282595-6f4ut146c7u4vlac8b2gvhphdpp8uaer.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

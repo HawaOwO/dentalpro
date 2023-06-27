@@ -4,19 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login"
-    android:background="@drawable/medbg">
+    android:background="@drawable/medbg"
+    tools:context=".Login">
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/Email"
         android:layout_width="325dp"
         android:layout_height="53dp"
+        android:background="@drawable/rounded_corner_view"
         android:ems="10"
+        android:fontFamily="@font/acme"
         android:hint="  Email Address"
         android:inputType="textEmailAddress"
-        android:background="@drawable/rounded_corner_view"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        android:textColor="#326373"
+        android:textColorHighlight="#3B4551"
+        android:textColorHint="#326373"
+        app:layout_constraintBottom_toTopOf="@+id/Password"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.884" />
@@ -27,9 +32,9 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_extrabold"
         android:text="Sign In"
-        android:textSize="24sp"
         android:textColor="#265AA8"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,18 +42,37 @@
         app:layout_constraintVertical_bias="0.853" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/Password"
         android:layout_width="325dp"
         android:layout_height="53dp"
+        android:background="@drawable/rounded_corner_view"
         android:ems="10"
+        android:fontFamily="@font/acme"
         android:hint="  Password"
         android:inputType="textPassword"
-        android:background="@drawable/rounded_corner_view"
+        android:textColor="#326373"
+        android:textColorHighlight="#3B4551"
+        android:textColorHint="#326373"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.905" />
+
+    <!--    <Button-->
+<!--        android:id="@+id/button3"-->
+<!--        android:layout_width="313dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:backgroundTint="#BD2454"-->
+<!--        android:text="Gmail Login"-->
+<!--        app:cornerRadius="20dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView3"-->
+<!--        app:layout_constraintVertical_bias="0.082" />-->
 
     <Button
         android:id="@+id/button"
@@ -57,13 +81,13 @@
         android:layout_marginBottom="4dp"
         android:backgroundTint="#265AA8"
         android:text="Log In"
+        android:textColorHint="#326373"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.438"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.974" />
 
     <TextView
         android:id="@+id/textView3"
@@ -76,20 +100,33 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.668" />
+        app:layout_constraintVertical_bias="0.684" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="313dp"
-        android:layout_height="53dp"
-        android:backgroundTint="#BD2454"
-        android:text="Gmail Login"
-        app:cornerRadius="20dp"
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="68dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.438"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        app:layout_constraintVertical_bias="0.082" />
+        app:layout_constraintTop_toBottomOf="@+id/google" />
+
+    <ImageView
+        android:id="@+id/google"
+        android:layout_width="314dp"
+        android:layout_height="56dp"
+        android:background="@drawable/round_outline"
+        android:clipToOutline="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.556"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.768"
+        app:srcCompat="@drawable/logingmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
