@@ -20,10 +20,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.dentalpro.databinding.ActivityMainBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -36,13 +39,17 @@ public class SignUp extends AppCompatActivity {
     ProgressBar progressBar;
     ImageView profile_img, profile_btn;
     private static final int RESULT_LOAD_IMG = 1;
-
+    ActivityMainBinding binding;
+    String firstname, lastname, phone, email;
+    FirebaseDatabase db;
+    DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //binding= ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(R.layout.activity_sign_up);
+
 
         userFName = findViewById(R.id.Fname);
         userLName = findViewById(R.id.Lname);
@@ -96,8 +103,34 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(SignUp.this, "Account is created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity2.class));
+//                            Toast.makeText(SignUp.this, "Account is created", Toast.LENGTH_SHORT).show();
+//                            startActivity(new Intent(getApplicationContext(), MainActivity2.class));
+                            // Get the user's unique UID from Firebase Auth
+                            String uid = fAuth.getCurrentUser().getUid();
+
+                            // Create a new User object with the provided information
+                            User user = new User();
+                            user.setFirstName(firstName);
+                            user.setLastName(lastName);
+                            user.setEmail(email);
+                            user.setPhone(phone);
+                            // Set other fields if needed
+
+                            // Save the user object to the Firebase Realtime Database
+                            db = FirebaseDatabase.getInstance();
+                            reference = db.getReference("Users");
+                            reference.child(uid).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(SignUp.this, "Account is created", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(getApplicationContext(), MainActivity2.class));
+                                    } else {
+                                        Toast.makeText(SignUp.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                            });
                         } else {
                             Toast.makeText(SignUp.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             //progressBar.setVisibility(View.GONE);
