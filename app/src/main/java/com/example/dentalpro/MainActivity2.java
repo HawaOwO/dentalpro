@@ -29,6 +29,7 @@ public class MainActivity2 extends AppCompatActivity {
     FloatingActionButton fab;
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
+    //TextView usernameTV, useremailTV;
 
 
     @Override
