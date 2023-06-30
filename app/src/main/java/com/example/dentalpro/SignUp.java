@@ -10,6 +10,7 @@ import android.graphics.Shader;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -160,6 +162,11 @@ public class SignUp extends AppCompatActivity {
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                 final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
 
+                // Convert the selected image to byte array
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageData = baos.toByteArray();
+
                 // Apply circular mask to the selected image
                 Bitmap circularBitmap = Bitmap.createBitmap(selectedImage.getWidth(), selectedImage.getHeight(), Bitmap.Config.ARGB_8888);
                 BitmapShader shader = new BitmapShader(selectedImage, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
@@ -172,6 +179,12 @@ public class SignUp extends AppCompatActivity {
                 canvas.drawCircle(selectedImage.getWidth() / 2f, selectedImage.getHeight() / 2f, radius, paint);
 
                 profile_img.setImageBitmap(circularBitmap);
+                // Save the byte array as Base64 string
+                String base64Image = Base64.encodeToString(imageData, Base64.DEFAULT);
+
+                // Set the profile picture in the User object
+                User user = new User();
+                user.setProfilePicture(base64Image);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(SignUp.this, "Something went wrong", Toast.LENGTH_LONG).show();

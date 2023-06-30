@@ -5,6 +5,7 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
+    private String profilePicture;
     // Add more fields if needed
 
     public User() {
@@ -41,5 +42,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 }

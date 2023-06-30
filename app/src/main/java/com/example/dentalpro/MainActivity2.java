@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -23,6 +25,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -30,18 +39,21 @@ public class MainActivity2 extends AppCompatActivity {
     DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
 
-    //TextView usernameTV, useremailTV;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         fab = findViewById(R.id.fab);
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView= findViewById(R.id.nav_view);
+        //
+        View headerView = navigationView.getHeaderView(0);
+        TextView usernameTV = headerView.findViewById(R.id.username);
+        TextView useremailTV = headerView.findViewById(R.id.useremail);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);
@@ -61,20 +73,6 @@ public class MainActivity2 extends AppCompatActivity {
         bottomNavigationView.setBackground(null);
         bottomNavigationView.setOnItemSelectedListener(item -> {
 
-//            switch (item.getItemId()) {
-//                case R.id.home:
-//                    replaceFragment(new HomeFragment());
-//                    break;
-//                case R.id.shorts:
-//                    replaceFragment(new ShortsFragment());
-//                    break;
-//                case R.id.subscriptions:
-//                    replaceFragment(new SubscriptionsFragment());
-//                    break;
-//                case R.id.library:
-//                    replaceFragment(new LibraryFragment());
-//                    break;
-//            }
             if (item.getItemId() == R.id.home) {
                 replaceFragment(new HomeFragment());
             } else if (item.getItemId() == R.id.shorts) {
@@ -87,6 +85,31 @@ public class MainActivity2 extends AppCompatActivity {
 
             return true;
         });
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if(currentUser != null){
+            String uid = currentUser.getUid();
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(uid);
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot.exists()){
+                        User user = snapshot.getValue(User.class);
+                        if(user!=null){
+                            String username = user.getFirstName() + " " + user.getLastName();
+                            String useremail = user.getEmail();
+                            usernameTV.setText(username);
+                            useremailTV.setText(useremail);
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
