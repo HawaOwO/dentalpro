@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -181,10 +182,18 @@ public class SignUp extends AppCompatActivity {
                 profile_img.setImageBitmap(circularBitmap);
                 // Save the byte array as Base64 string
                 String base64Image = Base64.encodeToString(imageData, Base64.DEFAULT);
+                FirebaseUser currentUser = fAuth.getCurrentUser();
+                if(currentUser!= null){
+                    String uid = currentUser.getUid();
+                    // Set the profile picture in the User object
+                    User user = new User();
+                    user.setProfilePicture(base64Image);
+                    // Now, save the user object to the Firebase Realtime Database
+                    db = FirebaseDatabase.getInstance();
+                    reference = db.getReference("Users");
+                    reference.child(uid).setValue(user) ;
+                }
 
-                // Set the profile picture in the User object
-                User user = new User();
-                user.setProfilePicture(base64Image);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Toast.makeText(SignUp.this, "Something went wrong", Toast.LENGTH_LONG).show();
