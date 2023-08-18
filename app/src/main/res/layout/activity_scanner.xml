@@ -4,14 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scanner">
-    
-    <Button
-        android:layout_width="wrap_content"
+    tools:context=".scanner"
+    android:background="@drawable/main2pic3">
+
+    <TextView
+        android:id="@+id/textViewScanner"
+        android:layout_width="122dp"
         android:layout_height="wrap_content"
-        android:text="Scan"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="87dp"
+        android:layout_marginEnd="149dp"
+        android:layout_marginBottom="591dp"
+        android:fontFamily="@font/alegreya_sc"
+        android:text="Scanner"
+        android:textColor="@color/white"
+        android:textSize="26dp"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
         android:id="@+id/btn_scan"
-        />
+        android:layout_width="285dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="171dp"
+        android:layout_marginEnd="63dp"
+        android:layout_marginBottom="512dp"
+        android:fontFamily="@font/alegreya_sc"
+        android:text="Scan Here"
+        app:cornerRadius="20dp" />
 
 </RelativeLayout>
