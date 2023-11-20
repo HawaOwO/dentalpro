@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ public class MainActivity2 extends AppCompatActivity {
     ImageView btn_gotoprofile;
     ImageView btn_logout;
     ImageView btn_noti;
+    TextView mainText;
 
 
     @Override
@@ -30,6 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
         btn_gotoscan = findViewById(R.id.scanicon);
         btn_logout = findViewById(R.id.backicon);
         btn_noti = findViewById(R.id.notificationicon);
+        mainText= findViewById(R.id.textViewMain);
 
 //        btn_gotoscan.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -51,24 +54,28 @@ public class MainActivity2 extends AppCompatActivity {
             @Override
             public void onClick(View v){
                replaceFragment(new fragmentHome());
+               mainText.setText("Home");
             }
         });
         btn_gotoscan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 replaceFragment(new fragmentScanner());
+                mainText.setText("Scanner");
             }
         });
         btn_gotoissue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 replaceFragment(new fragmentIssue());
+                mainText.setText("Issues");
             }
         });
         btn_gotoprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 replaceFragment(new fragmentProfile());
+                mainText.setText("Profile");
             }
         });
     }

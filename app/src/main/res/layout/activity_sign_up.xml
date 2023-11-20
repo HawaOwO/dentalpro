@@ -7,6 +7,9 @@
     android:background="@drawable/medbg"
     tools:context=".SignUp">
 
+<!--    this section should be only allowed by the administrator
+to register new user, normal user can change the password on their own through
+the system profile later on-->
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
@@ -63,7 +66,7 @@
         android:layout_width="310dp"
         android:layout_height="53dp"
         android:backgroundTint="#265AA8"
-        android:text="Sign Up"
+        android:text="Register New User"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
