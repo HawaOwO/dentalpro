@@ -1,6 +1,7 @@
 package com.example.dentalpro;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
@@ -38,6 +40,7 @@ public class TabletFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tablet, container, false);
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
         RecyclerView recyclerView = view.findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -71,10 +74,20 @@ public class TabletFragment extends Fragment {
         };
 
         recyclerView.setAdapter(adapter);
+        floatingActionButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(getActivity(), addMed.class));
+
+            }
+        });
 
         return view;
 
     }
+
+//
+
     @Override
     public void onStart() {
         super.onStart();
