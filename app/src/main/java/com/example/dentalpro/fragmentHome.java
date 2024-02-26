@@ -15,9 +15,6 @@ public class fragmentHome extends Fragment {
     Button t1, t2, t3, t4, t5, t6, t7, t8, t9, t10;
 
     View view;
-//    FirebaseAuth fAuth;
-//    FirebaseDatabase db;
-//    DatabaseReference reference;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,7 +34,90 @@ public class fragmentHome extends Fragment {
         t1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeFragment(new TabletFragment());
+                String selectedType = "TABLET"; // Set the selected type based on your logic
+                MedicationFragment medicationFragment = new MedicationFragment();
+                changeFragment(medicationFragment, selectedType);
+            }
+
+        });
+        t2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedType = "LIQUID (INTERNAL USE)"; // Set the selected type based on your logic
+                MedicationFragment medicationFragment = new MedicationFragment();
+                changeFragment(medicationFragment, selectedType);
+            }
+
+        });
+        t3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedType = "INHALATIONS"; // Set the selected type based on your logic
+                MedicationFragment medicationFragment = new MedicationFragment();
+                changeFragment(medicationFragment, selectedType);
+            }
+
+        });
+        t4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedType = "EYE DROP/ OINTMENT"; // Set the selected type based on your logic
+                MedicationFragment medicationFragment = new MedicationFragment();
+                changeFragment(medicationFragment, selectedType);
+            }
+
+        });
+        t5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedType = "SUPPOSITORY/ENEMA/PESSARY)"; // Set the selected type based on your logic
+                MedicationFragment medicationFragment = new MedicationFragment();
+                changeFragment(medicationFragment, selectedType);
+            }
+
+        });
+        t6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedType = "CREAM/LOTION"; // Set the selected type based on your logic
+                MedicationFragment medicationFragment = new MedicationFragment();
+                changeFragment(medicationFragment, selectedType);
+            }
+
+        });
+        t7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedType = "NOSE DROP/ SPRAY"; // Set the selected type based on your logic
+                MedicationFragment medicationFragment = new MedicationFragment();
+                changeFragment(medicationFragment, selectedType);
+            }
+
+        });
+        t8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedType = "INJECTIONS"; // Set the selected type based on your logic
+                MedicationFragment medicationFragment = new MedicationFragment();
+                changeFragment(medicationFragment, selectedType);
+            }
+
+        });
+        t9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedType = "LIQUID (EXTERNAL USE)"; // Set the selected type based on your logic
+                MedicationFragment medicationFragment = new MedicationFragment();
+                changeFragment(medicationFragment, selectedType);
+            }
+
+        });
+        t10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String selectedType = "CAPSULE"; // Set the selected type based on your logic
+                MedicationFragment medicationFragment = new MedicationFragment();
+                changeFragment(medicationFragment, selectedType);
             }
 
         });
@@ -46,12 +126,17 @@ public class fragmentHome extends Fragment {
     }
 
     // Function to change the fragment
-    private void changeFragment(Fragment newFragment) {
+    private void changeFragment(Fragment newFragment, String selectedType) {
         // Get the FragmentManager
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
         // Begin a new FragmentTransaction
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        // Pass the selected type to the new fragment using a Bundle
+        Bundle bundle = new Bundle();
+        bundle.putString("selectedType", selectedType);
+        newFragment.setArguments(bundle);
 
         // Replace the current fragment with the new fragment
         fragmentTransaction.replace(R.id.frame1, newFragment);

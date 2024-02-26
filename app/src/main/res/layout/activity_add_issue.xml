@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Add New Medication"
+        android:text="Add New Issue"
         android:background="@color/lavender"
         android:textSize="25dp"
         android:gravity="center"
@@ -20,7 +20,7 @@
         android:textSize="20sp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
-        android:text="Name"/>
+        android:text="Issue Name"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -38,7 +38,7 @@
         android:textSize="20sp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
-        android:text="Quantity"/>
+        android:text="Username"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -47,7 +47,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
-        android:id="@+id/txtQuantity" />
+        android:id="@+id/txtUsername" />
 
     <TextView
         android:layout_width="match_parent"
@@ -56,7 +56,7 @@
         android:textSize="20sp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
-        android:text="Details"/>
+        android:text="Description"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -65,7 +65,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
-        android:id="@+id/txtDetail" />
+        android:id="@+id/txtDesc" />
 
     <TextView
         android:layout_width="match_parent"
@@ -74,7 +74,7 @@
         android:textSize="20sp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
-        android:text="Expiry Date"/>
+        android:text="Date"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
-        android:id="@+id/txtExpirydate" />
+        android:id="@+id/txtDate" />
 
     <!-- Add the following code for the Type field using Spinner -->
     <TextView
@@ -93,16 +93,18 @@
         android:textSize="20sp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp"
-        android:text="Type"/>
+        android:text="Status"/>
 
-    <Spinner
-        android:id="@+id/spinnerType"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
-        android:gravity="center" />
+        android:gravity="center"
+        android:id="@+id/txtStatus" />
+
+
 
     <Button
         android:layout_width="match_parent"

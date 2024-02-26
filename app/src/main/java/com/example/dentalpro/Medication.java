@@ -1,13 +1,20 @@
 package com.example.dentalpro;
 
-public class Tablet {
+public class Medication {
+    private String type;
     private String name;
     private int quantity;
     private String details;
     private String expiryDate;
 
-    public Tablet(){
+    public Medication(){
         // Required empty constructor for Firebase
+    }
+
+    public String getType(){ return type; }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getName() {

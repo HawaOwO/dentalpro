@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="Add New Medication"
+        android:text="Update Issue"
         android:background="@color/lavender"
         android:textSize="25dp"
         android:gravity="center"
@@ -18,13 +18,13 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Name"/>
+        android:text="Issue Name"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
@@ -36,54 +36,54 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Quantity"/>
+        android:text="Username"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
-        android:id="@+id/txtQuantity" />
+        android:id="@+id/txtUsername" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Details"/>
+        android:text="Description"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
-        android:id="@+id/txtDetail" />
+        android:id="@+id/txtDesc" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Expiry Date"/>
+        android:text="Date"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
-        android:id="@+id/txtExpirydate" />
+        android:id="@+id/txtDate" />
 
     <!-- Add the following code for the Type field using Spinner -->
     <TextView
@@ -91,18 +91,18 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Type"/>
+        android:text="Status"/>
 
-    <Spinner
-        android:id="@+id/spinnerType"
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
-        android:gravity="center" />
+        android:gravity="center"
+        android:id="@+id/txtStatus" />
 
     <Button
         android:layout_width="match_parent"
@@ -110,26 +110,12 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:layout_marginTop="10dp"
-        android:text="Save "
+        android:text="Update"
         android:textSize="21dp"
         android:textAllCaps="false"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
-        android:id="@+id/btnAdd"/>
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="center"
-        android:text="Back "
-        android:textSize="21dp"
-        android:textAllCaps="false"
-        android:backgroundTint="@color/green1"
-        android:gravity="center"
-        android:id="@+id/btnBack"/>
+        android:id="@+id/btnUpdate"/>
 
 
 </LinearLayout>

@@ -15,47 +15,57 @@
         android:padding="15dp">
 
         <TextView
-            android:id="@+id/textName"
+            android:id="@+id/textname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medicine name"
+            android:text="Issue Name"
 
             />
 
         <TextView
-            android:id="@+id/textquantity"
+            android:id="@+id/textdesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medicine quantity"
-            android:layout_below="@+id/textName"/>
+            android:text="Issue description"
+            android:layout_below="@+id/textname"/>
 
         <TextView
-            android:id="@+id/textdetails"
+            android:id="@+id/textdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medicine details"
-            android:layout_below="@+id/textquantity"/>
+            android:text="Issue date"
+            android:layout_below="@+id/textdesc"/>
 
         <TextView
-            android:id="@+id/textexpiryDate"
+            android:id="@+id/textcreator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medicine expiry date"
-            android:layout_below="@+id/textdetails"/>
+            android:text="User who create the issue"
+            android:layout_below="@+id/textdate"/>
 
         <TextView
-            android:id="@+id/textType"
+            android:id="@+id/textstatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medicine Type"
-            android:layout_below="@+id/textexpiryDate" />
+            android:text="Status"
+            android:layout_below="@+id/textcreator"/>
+
+<!--        &lt;!&ndash; Add a small View for the status indicator &ndash;&gt;-->
+<!--        <View-->
+<!--            android:id="@+id/statusIndicator"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="20dp"-->
+<!--            android:layout_below="@id/textcreator"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:background="@drawable/circle_red"-->
+<!--            android:layout_alignParentRight="true" />-->
 
 
         <LinearLayout
-        android:layout_below= "@+id/textexpiryDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:layout_below= "@+id/textstatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <Button
                 android:layout_width="173dp"
