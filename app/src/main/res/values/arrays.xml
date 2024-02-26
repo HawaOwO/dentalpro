@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="type_array">
+    <item>TABLET</item>
+    <item>LIQUID (INTERNAL USE)</item>
+    <item>INHALATIONS</item>
+    <item>EYE DROP/ OINTMENT</item>
+    <item>SUPPOSITORY/ENEMA/PESSARY</item>
+    <item>CREAM/LOTION</item>
+    <item>NOSE DROP/ SPRAY</item>
+    <item>INJECTIONS</item>
+    <item>LIQUID (EXTERNAL USE)</item>
+    <item>CAPSULE</item>
+    <!-- Add more types as needed -->
+</string-array>
+</resources>

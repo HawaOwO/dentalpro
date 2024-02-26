@@ -24,14 +24,14 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
             }
         });
-        SecondBtn = (Button) findViewById(R.id.button2);
-        SecondBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                Intent intent = new Intent(MainActivity.this, SignUp.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-            }
-        });
+//        SecondBtn = (Button) findViewById(R.id.button2);
+//        SecondBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v){
+//                Intent intent = new Intent(MainActivity.this, SignUp.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+//            }
+//        });
     }
 }

@@ -5,7 +5,9 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
+    private Integer role;
     private String profilePicture;
+    private String username;
     // Add more fields if needed
 
     public User() {
@@ -50,5 +52,21 @@ public class User {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

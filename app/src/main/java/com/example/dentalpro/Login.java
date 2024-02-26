@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -35,7 +34,7 @@ public class Login extends AppCompatActivity {
     FirebaseAuth fAuth;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-    ImageView google_img;
+    //ImageView google_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,24 +91,24 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        google_img = findViewById(R.id.google);
-        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        gsc = GoogleSignIn.getClient(this, gso);
-        google_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SignInWithGoogle();
-            }
-        });
+//        google_img = findViewById(R.id.google);
+//        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken(getString(R.string.default_web_client_id))
+//                .requestEmail()
+//                .build();
+//        gsc = GoogleSignIn.getClient(this, gso);
+//        google_img.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                SignInWithGoogle();
+//            }
+//        });
     }
-    private void SignInWithGoogle() {
-        Intent intent = gsc.getSignInIntent();
-        startActivityForResult(intent, 100);
-
-    }
+//    private void SignInWithGoogle() {
+//        Intent intent = gsc.getSignInIntent();
+//        startActivityForResult(intent, 100);
+//
+//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -7,23 +7,6 @@
     tools:context=".fragmentHome">
 
     <!-- MEDICAL INVENTORY FRAGMENT-->
-
-<!--    <TextView-->
-<!--        android:layout_width="260dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentStart="true"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_alignParentEnd="true"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_marginStart="164dp"-->
-<!--        android:layout_marginTop="31dp"-->
-<!--        android:layout_marginEnd="166dp"-->
-<!--        android:layout_marginBottom="891dp"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="Medicine Inventory"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="26dp" />-->
-
     <!--    <Button-->
 <!--        android:id="@+id/tablet"-->
 <!--        android:layout_width="173dp"-->
@@ -39,113 +22,110 @@
 <!--        android:textSize="16dp"-->
 <!--        />-->
 
-<!--        <Button-->
-<!--            android:id="@+id/liquidint"-->
-<!--            android:layout_width="173dp"-->
-<!--            android:layout_height="77dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:fontFamily="@font/alegreya_sc"-->
-<!--            android:text="LIQUID (INTERNAL USE)"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="16dp" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/inhalation"-->
-<!--            android:layout_width="173dp"-->
-<!--            android:layout_height="77dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:fontFamily="@font/alegreya_sc"-->
-<!--            android:text="INHALATIONS"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="16dp" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/eyedrop"-->
-<!--            android:layout_width="173dp"-->
-<!--            android:layout_height="77dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:fontFamily="@font/alegreya_sc"-->
-<!--            android:text="EYE DROP/ OINTMENT"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="16dp" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/enema"-->
-<!--            android:layout_width="173dp"-->
-<!--            android:layout_height="77dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:fontFamily="@font/alegreya_sc"-->
-<!--            android:text="Suppository/enema/pessary"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="16dp" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/cream"-->
-<!--            android:layout_width="173dp"-->
-<!--            android:layout_height="77dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:fontFamily="@font/alegreya_sc"-->
-<!--            android:text="Cream / lotion "-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="16dp" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/nosedrop"-->
-<!--            android:layout_width="173dp"-->
-<!--            android:layout_height="77dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:fontFamily="@font/alegreya_sc"-->
-<!--            android:text="NOSE DROP/ SPRAY"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="16dp" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/injection"-->
-<!--            android:layout_width="173dp"-->
-<!--            android:layout_height="77dp"-->
-<!--            android:layout_marginStart="24dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:backgroundTint="@color/white"-->
-<!--            android:fontFamily="@font/alegreya_sc"-->
-<!--            android:text="INJECTIONS"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:textSize="16dp" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/liquidext"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="LIQUID (EXTERNAL USE)"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/capsule"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="112dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="CAPSULE"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp" />-->
 
 
+    <Button
+        android:id="@+id/type10"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/type8"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="1dp"
+        android:text="CAPSULE"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/type9"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/type7"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="30dp"
+        android:text="LIQUID (EXTERNAL USE)"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/type8"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/type6"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="1dp"
+        android:text="INJECTIONS"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/type7"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/type5"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="30dp"
+        android:text="NOSE DROP/ SPRAY"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/type6"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/type4"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="1dp"
+        android:text="CREAM/LOTION"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/type5"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/type3"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="30dp"
+        android:text="SUPPOSITORY/ENEMA/PESSARY"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/type4"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/type2"
+        android:layout_marginStart="220dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="1dp"
+        android:text="EYE DROP/ OINTMENT"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/type3"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/type1"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="30dp"
+        android:textSize="16dp"
+        android:text="INHALATIONS" />
+
+    <Button
+        android:id="@+id/type2"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="1dp"
+        android:textSize="16dp"
+        android:text="LIQUID (INTERNAL USE)" />
+
+    <Button
+        android:id="@+id/type1"
+        android:layout_width="190dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:textSize="16dp"
+        android:text="TABLET" />
 </RelativeLayout>

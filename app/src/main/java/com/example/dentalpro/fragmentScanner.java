@@ -58,4 +58,26 @@ public class fragmentScanner extends Fragment {
             }).show();
         }
     });
+
+//    ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result -> {
+//        if (result.getContents() != null) {
+//            // Show the scanned result
+//            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//            builder.setTitle("Result");
+//            builder.setMessage(result.getContents());
+//            builder.setPositiveButton("OK", (dialogInterface, i) -> {
+//                dialogInterface.dismiss();
+//                // Update the quantity in TabletFragment
+//                if (getActivity() instanceof MainActivity) {
+//                    TabletFragment tabletFragment = ((MainActivity) getActivity()).getTabletFragment();
+//                    if (tabletFragment != null) {
+//                        tabletFragment.updateQuantity(result.getContents());
+//                    }
+//                }
+//            }).show();
+//        }
+//    });
+//
+
+
 }
