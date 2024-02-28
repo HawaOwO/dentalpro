@@ -6,23 +6,7 @@
     android:background="@color/white"
     tools:context=".fragmentHome">
 
-    <!-- MEDICAL INVENTORY FRAGMENT-->
-    <!--    <Button-->
-<!--        android:id="@+id/tablet"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_alignParentStart="true"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="112dp"-->
-<!--        android:backgroundTint="@color/white"-->
 <!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="TABLET"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        />-->
-
-
 
     <Button
         android:id="@+id/type10"
