@@ -1,0 +1,20 @@
+<!-- res/drawable/brown_border_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background with tint -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/issue" /> <!-- Set your desired background tint color here -->
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+    <!-- Border -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="2dp"
+                android:color="@android:color/black" /> <!-- Set the border color to brown here -->
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+</layer-list>

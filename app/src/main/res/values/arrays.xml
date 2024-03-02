@@ -10,7 +10,24 @@
     <item>NOSE DROP/ SPRAY</item>
     <item>INJECTIONS</item>
     <item>LIQUID (EXTERNAL USE)</item>
-    <item>CAPSULE</item>
-    <!-- Add more types as needed -->
+    <item>CAPSULE</item><!-- Add more types as needed -->
+</string-array>
+    <string-array name="status_array">
+        <item>UNSOLVED</item>
+        <item>SOLVED</item>
+    </string-array>
+<string-array name="month_array">
+    <item>January</item>
+    <item>February</item>
+    <item>March</item>
+    <item>April</item>
+    <item>May</item>
+    <item>June</item>
+    <item>July</item>
+    <item>August</item>
+    <item>September</item>
+    <item>October</item>
+    <item>November</item>
+    <item>December</item>
 </string-array>
 </resources>

@@ -7,49 +7,38 @@
     android:padding="16dp"
     app:cardCornerRadius="6dp"
     android:elevation="6dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp">
 
-<!--&lt;!&ndash;        &lt;!&ndash; Add ImageView for displaying a picture &ndash;&gt;&ndash;&gt;-->
-<!--        <de.hdodenhof.circleimageview.CircleImageView-->
-<!--            android:id="@+id/imageMedicine"-->
-<!--            android:layout_width="80dp"-->
-<!--            android:layout_height="80dp"-->
-<!--            android:src="@mipmap/ic_launcher"-->
-<!--            android:layout_centerVertical="true"-->
-<!--            app:civ_border_color="@color/green1"-->
-<!--            app:civ_border_width="2dp"/>-->
-
         <TextView
             android:id="@+id/textName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Medicine name"/>
-<!--            android:layout_toRightOf="@+id/imageMedicine"-->
-<!--            android:layout_marginLeft="10dp"-->
+            android:text="Medicine name"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
 
         <TextView
             android:id="@+id/textquantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medicine quantity"
-            android:layout_below="@+id/textName"/>
+            android:layout_below="@+id/textName"
+            android:textSize="16dp"/>
 
-        <!--            android:layout_toRightOf="@+id/imageMedicine"-->
-<!--            android:layout_marginLeft="10dp"-->
 
         <TextView
             android:id="@+id/textdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medicine details"
-            android:layout_below="@+id/textquantity"/>
-<!--            android:layout_toRightOf="@+id/imageMedicine"-->
-<!--            android:layout_marginLeft="10dp"-->
+            android:layout_below="@+id/textquantity"
+            android:textSize="16dp"/>
 
 
         <TextView
@@ -57,27 +46,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medicine expiry date"
-            android:layout_below="@+id/textdetails"/>
-<!--            android:layout_toRightOf="@+id/imageMedicine"-->
-<!--            android:layout_marginLeft="10dp"-->
+            android:layout_below="@+id/textdetails"
+            android:textSize="16dp"/>
 
 
-        <TextView
-            android:id="@+id/textType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Medicine Type"
-            android:layout_below="@+id/textexpiryDate" />
-<!--            android:layout_toRightOf="@+id/imageMedicine"-->
-<!--            android:layout_marginLeft="10dp"-->
-
-
+<!--        <TextView-->
+<!--            android:id="@+id/textType"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Medicine Type"-->
+<!--            android:layout_below="@+id/textexpiryDate" />-->
 
         <LinearLayout
-        android:layout_below= "@+id/textType"
+        android:layout_below= "@+id/textexpiryDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
 
             <Button
                 android:id="@+id/btnEdit"
@@ -85,11 +71,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:text="Edit"
+                android:backgroundTint="@color/green1"
                 android:textAllCaps="false"
-
                 />
-<!--                android:layout_toRightOf="@+id/imageMedicine"-->
-
 
             <Button
                 android:layout_width="173dp"
@@ -97,12 +81,26 @@
                 android:text="Delete"
                 android:layout_marginLeft="5dp"
                 android:textAllCaps="false"
-                android:id="@+id/btnDelete"/>
-<!--                android:layout_toRightOf="@+id/imageMedicine"-->
-
-
+                android:id="@+id/btnDelete"
+                android:backgroundTint="@color/lavender"/>
 
         </LinearLayout>
+        <!-- Smooth square on the right -->
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:background="@color/green1">
+
+            <!-- ImageView for the image -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_medication_24"
+                android:id="@+id/imageMed"/>
+
+        </RelativeLayout>
     </RelativeLayout>
 
 

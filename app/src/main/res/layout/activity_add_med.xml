@@ -85,6 +85,24 @@
         android:gravity="center"
         android:id="@+id/txtExpirydate" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:text="Medication Picture (if any)"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/roundedpopup"
+        android:gravity="center"
+        android:id="@+id/txtPic" />
+
     <!-- Add the following code for the Type field using Spinner -->
     <TextView
         android:layout_width="match_parent"

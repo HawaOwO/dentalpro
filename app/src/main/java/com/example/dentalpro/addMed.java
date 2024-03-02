@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class addMed extends AppCompatActivity {
-     EditText name, quantity, detail, expirydate, type;
+     EditText name, quantity, detail, expirydate, type, medPicture;
      Button btnAdd, btnBack;
      Spinner spinnerType;
 
@@ -32,6 +32,7 @@ public class addMed extends AppCompatActivity {
         quantity = (EditText)findViewById(R.id.txtQuantity);
         detail = (EditText)findViewById(R.id.txtDetail);
         expirydate = (EditText)findViewById(R.id.txtExpirydate);
+        medPicture=(EditText)findViewById(R.id.txtPic);
 
         btnAdd=(Button)findViewById(R.id.btnAdd);
         btnBack=(Button)findViewById(R.id.btnBack);
@@ -78,6 +79,7 @@ public class addMed extends AppCompatActivity {
         map.put("details", detail.getText().toString());
         map.put("expiryDate", expirydate.getText().toString());
         map.put("type", spinnerType.getSelectedItem().toString()); // Add the selected type
+        map.put("medPicture", medPicture.getText().toString());
 
         FirebaseDatabase.getInstance().getReference().child("Medication")
                 .push()
@@ -107,6 +109,7 @@ public class addMed extends AppCompatActivity {
         detail.setText("");
         expirydate.setText("");
         spinnerType.setSelection(0);
+        medPicture.setText("");
     }
 
 }

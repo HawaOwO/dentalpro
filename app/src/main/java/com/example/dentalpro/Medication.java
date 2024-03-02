@@ -7,6 +7,8 @@ public class Medication {
     private String details;
     private String expiryDate;
 
+    private String medPicture;
+
     public Medication(){
         // Required empty constructor for Firebase
     }
@@ -49,4 +51,11 @@ public class Medication {
         this.expiryDate = expiryDate;
     }
 
+    public String getMedPicture() {
+        return medPicture;
+    }
+
+    public void setMedPicture(String medPicture) {
+        this.medPicture = medPicture;
+    }
 }

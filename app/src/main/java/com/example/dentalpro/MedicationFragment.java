@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -147,6 +149,7 @@ public class MedicationFragment extends Fragment {
 
         TextView textName, textQuantity, textDetails, textExpirydate, textType;
         Button btnEdit, btnDelete;
+        ImageView imageView;
 
 
         private String tabletKey;
@@ -162,19 +165,28 @@ public class MedicationFragment extends Fragment {
             btnEdit=itemView.findViewById(R.id.btnEdit);
             btnDelete=itemView.findViewById(R.id.btnDelete);
 
-            textType = itemView.findViewById(R.id.textType);
+            imageView=itemView.findViewById(R.id.imageMed);
+
+            //textType = itemView.findViewById(R.id.textType);
 
         }
 
         public void bindMedication(Medication medication, int position, String key) {
-            textName.setText(medication.getName());
-            textQuantity.setText(String.valueOf(medication.getQuantity()));
-            textDetails.setText(medication.getDetails());
-            textExpirydate.setText(medication.getExpiryDate());
-            textType.setText(medication.getType());
+            textName.setText("Medicine Name: " + medication.getName());
+            textQuantity.setText(String.valueOf("Quantity: " + medication.getQuantity()));
+            textDetails.setText("Description: " + medication.getDetails());
+            textExpirydate.setText("Expiry Date: " + medication.getExpiryDate());
+            //textType.setText(medication.getType());
             // Bind other attributes here
              // Declare a final variable
             tabletKey=key;
+
+            if (medication.getMedPicture()!=null) {
+                // Load image from URL using Picasso
+                Picasso.get().load(medication.getMedPicture()).into(imageView);
+            } else {
+                imageView.setImageResource(R.drawable.baseline_medication_24); // Replace with your default drawable resource
+            }
 
             btnEdit.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -189,6 +201,7 @@ public class MedicationFragment extends Fragment {
                     EditText quantity = dialogView.findViewById(R.id.txtQuantity);
                     EditText details = dialogView.findViewById(R.id.txtDetail);
                     EditText expirydate = dialogView.findViewById(R.id.txtExpirydate);
+                    EditText medpic = dialogView.findViewById(R.id.txtMedPic);
                     Spinner spinnerType = dialogView.findViewById(R.id.spinnerType);
 
                     Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
@@ -197,6 +210,7 @@ public class MedicationFragment extends Fragment {
                     quantity.setText(String.valueOf(medication.getQuantity()));
                     details.setText(medication.getDetails());
                     expirydate.setText(medication.getExpiryDate());// Set data from the tablet object
+                    medpic.setText(medication.getMedPicture());
 
                     // Set the selection for the Spinner based on the tablet's type
                     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.type_array, android.R.layout.simple_spinner_item);
@@ -219,6 +233,7 @@ public class MedicationFragment extends Fragment {
                             map.put("quantity", updatedQuantity);
                             map.put("details", details.getText().toString());
                             map.put("expiryDate", expirydate.getText().toString());
+                            map.put("medPicture", medpic.getText().toString());
                             map.put("type", spinnerType.getSelectedItem().toString()); // Set the type
 
 

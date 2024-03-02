@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -92,6 +98,24 @@
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:text="Medication Picture (if any)"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/roundedpopup"
+        android:gravity="center"
+        android:id="@+id/txtMedPic" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:text="Type"/>
 
     <Spinner
@@ -115,6 +139,7 @@
         android:background="@drawable/roundedpopup"
         android:gravity="center"
         android:id="@+id/btnUpdate"/>
+    </LinearLayout>
 
 
-</LinearLayout>
+</ScrollView>
