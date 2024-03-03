@@ -14,9 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Update Issue"
-        android:background="@color/lavender"
+        android:background="@color/issueUnsolved"
         android:textSize="25dp"
         android:gravity="center"
+        android:fontFamily="@font/alegreya_sc"
         android:textColor="@color/white"/>
 
     <TextView
@@ -26,6 +27,8 @@
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
         android:text="Issue Name"/>
 
     <EditText
@@ -35,6 +38,8 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/alegreya_sc"
         android:id="@+id/txtName" />
 
     <TextView
@@ -44,6 +49,8 @@
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
         android:text="Username"/>
 
     <EditText
@@ -53,6 +60,8 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/alegreya_sc"
         android:id="@+id/txtUsername" />
 
     <TextView
@@ -62,15 +71,19 @@
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
         android:text="Description"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="55dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/alegreya_sc"
         android:id="@+id/txtDesc" />
 
     <TextView
@@ -80,6 +93,8 @@
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
         android:text="Date (dd/Month/yyyy)"/>
 
 <!--    <EditText-->
@@ -113,6 +128,8 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/roundedpopup"
             android:gravity="center"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
             android:id="@+id/txtDay" />
 
         <!-- Month -->
@@ -124,6 +141,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/roundedpopup"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
             android:gravity="center" />
 
         <!-- Year -->
@@ -135,6 +154,8 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/roundedpopup"
             android:gravity="center"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
             android:id="@+id/txtYear" />
 
     </LinearLayout>
@@ -147,6 +168,8 @@
             android:textSize="20sp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="5dp"
+            android:textColor="@color/brown"
+            android:fontFamily="@font/alegreya_sc"
             android:text="Status"/>
 
         <Spinner
@@ -156,6 +179,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/roundedpopup"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
             android:gravity="center" />
 
     <Button
@@ -167,8 +192,10 @@
         android:text="Update"
         android:textSize="21dp"
         android:textAllCaps="false"
-        android:background="@drawable/roundedpopup"
         android:gravity="center"
+        android:backgroundTint="@color/issueUnsolved"
+        android:textColor="@color/white"
+        android:fontFamily="@font/alegreya_sc"
         android:id="@+id/btnUpdate"/>
 
 

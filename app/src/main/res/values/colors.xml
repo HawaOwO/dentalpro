@@ -11,6 +11,8 @@
     <color name="lavender">#8692f7</color>
     <color name="green1">#5AB9C6</color>
     <color name="red">#670A18</color>
+    <color name="gray">#393939</color>
+    <color name="brown">#330101</color>
     <color name="issueUnsolved">#DB719B</color>
     <color name="issueSolved">#5AB9C6</color>
     <color name="issue">#FDEBEB</color>

@@ -17,6 +17,10 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="1dp"
         android:text="CAPSULE"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:textSize="16dp" />
 
     <Button
@@ -27,6 +31,10 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="30dp"
         android:text="LIQUID (EXTERNAL USE)"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:textSize="16dp" />
 
     <Button
@@ -38,6 +46,10 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="1dp"
         android:text="INJECTIONS"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:textSize="16dp" />
 
     <Button
@@ -48,6 +60,10 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="30dp"
         android:text="NOSE DROP/ SPRAY"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:textSize="16dp" />
 
     <Button
@@ -59,6 +75,10 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="1dp"
         android:text="CREAM/LOTION"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:textSize="16dp" />
 
     <Button
@@ -69,6 +89,10 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="30dp"
         android:text="SUPPOSITORY/ENEMA/PESSARY"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:textSize="16dp" />
 
     <Button
@@ -80,6 +104,10 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="1dp"
         android:text="EYE DROP/ OINTMENT"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:textSize="16dp" />
 
     <Button
@@ -90,6 +118,10 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="30dp"
         android:textSize="16dp"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:text="INHALATIONS" />
 
     <Button
@@ -101,6 +133,10 @@
         android:layout_marginStart="220dp"
         android:layout_marginEnd="1dp"
         android:textSize="16dp"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:text="LIQUID (INTERNAL USE)" />
 
     <Button
@@ -111,5 +147,9 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:textSize="16dp"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:text="TABLET" />
 </RelativeLayout>

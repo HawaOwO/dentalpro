@@ -4,6 +4,7 @@ public class Record {
     private String username;
     private String name;
     private String date;
+    private String quantityR;
 
     public Record(){
 
@@ -30,5 +31,13 @@ public class Record {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getQuantityR() {
+        return quantityR;
+    }
+
+    public void setQuantityR(String quantityR) {
+        this.quantityR = quantityR;
     }
 }

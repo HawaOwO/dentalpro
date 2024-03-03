@@ -10,8 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -132,6 +135,11 @@ public class fragmentScanner extends Fragment {
                                 medication.setQuantity(updatedQuantity);
                                 updateQuantityInDatabase(medication.getName(), updatedQuantity);
 
+                                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                                String userEmail = currentUser.getEmail();
+
+                                updateIntoRecord(medication.getName(), updatedQuantity, userEmail);
+
                                 dialogInterface.dismiss();
                             } else {
                                 showAlert("Quantity entered is greater than available quantity");
@@ -175,6 +183,43 @@ public class fragmentScanner extends Fragment {
                 showAlert("Error retrieving medication data");
             }
         });
+    }
+
+    private void updateIntoRecord(String scannedBarcode, int usedQuantity, String userEmail) {
+
+        // Use email as the unique identifier
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("User");
+
+        // Query users by email
+        usersRef.orderByChild("email").equalTo(userEmail).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                    User user = userSnapshot.getValue(User.class);
+
+                    // Display user data in the EditText fields
+                    if (user != null) {
+
+                        Record record = new Record();
+                        record.setUsername(user.getUsername()); // replace with the actual username
+                        record.setName(scannedBarcode);
+                        record.setQuantityR(String.valueOf(usedQuantity)); // assuming quantityR is a string
+
+                        // Push the record to the "Records" node in the database
+                        DatabaseReference recordsRef = FirebaseDatabase.getInstance().getReference().child("Record");
+                        recordsRef.push().setValue(record);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle errors
+            }
+        });
+
+
+
     }
 
 

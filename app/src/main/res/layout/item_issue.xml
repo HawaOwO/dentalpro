@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:text="Issue Name"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:textSize="18dp"/>
 
         <TextView
@@ -30,6 +31,7 @@
             android:layout_height="wrap_content"
             android:text="Issue description"
             android:textSize="16dp"
+            android:textColor="@color/black"
             android:layout_below="@+id/textname"/>
 
         <TextView
@@ -38,6 +40,7 @@
             android:layout_height="wrap_content"
             android:text="Issue date"
             android:textSize="14dp"
+            android:textColor="@color/black"
             android:layout_below="@+id/textcreator"/>
 
         <TextView
@@ -46,6 +49,7 @@
             android:layout_height="wrap_content"
             android:text="User who create the issue"
             android:textSize="14dp"
+            android:textColor="@color/black"
             android:layout_below="@+id/textdesc"/>
 
 <!--        <TextView-->
@@ -98,6 +102,7 @@
                 android:layout_marginLeft="5dp"
                 android:textAllCaps="false"
                 android:id="@+id/btnDelete"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/red"/>
 
         </LinearLayout>
