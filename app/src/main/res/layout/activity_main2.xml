@@ -62,19 +62,8 @@
         app:layout_constraintVertical_bias="0.979"
         app:srcCompat="@drawable/baseline_person_24" />
 
-<!--    <ImageView-->
-<!--        android:id="@+id/notificationicon"-->
-<!--        android:layout_width="55dp"-->
-<!--        android:layout_height="55dp"-->
-<!--        android:layout_marginTop="12dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.983"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/backicon"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:srcCompat="@drawable/baseline_circle_notifications_24" />-->
-
     <ImageView
-        android:id="@+id/analyticicon"
+        android:id="@+id/notificationicon"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginTop="12dp"
@@ -82,7 +71,18 @@
         app:layout_constraintHorizontal_bias="0.983"
         app:layout_constraintStart_toEndOf="@+id/backicon"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_analytics_24" />
+        app:srcCompat="@drawable/baseline_circle_notifications_24" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/analyticicon"-->
+<!--        android:layout_width="55dp"-->
+<!--        android:layout_height="55dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.983"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/backicon"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/baseline_analytics_24" />-->
 
     <TextView
         android:id="@+id/textViewMain"

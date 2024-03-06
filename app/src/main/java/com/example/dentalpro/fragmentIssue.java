@@ -174,26 +174,6 @@ public class fragmentIssue extends Fragment {
         public void bindIssue(Issue issue, int position, String key) {
             textName.setText(issue.getName());
             textDescription.setText("Description: " +issue.getDescription());
-            // Format the date and time
-//            DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(itemView.getContext()); // You can customize the format by passing a Locale
-//            DateFormat timeFormat = android.text.format.DateFormat.getTimeFormat(itemView.getContext());
-//            String formattedDate = dateFormat.format(issue.getDate()) + " " + timeFormat.format(issue.getDate());
-//            textDate.setText(formattedDate);
-
-//            if (issue.getDate() != null) {
-//                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-//                String formattedDate = dateFormat.format(issue.getDate());
-//
-//                // Initialize textDate if not already initialized
-//                if (textDate == null) {
-//                    textDate = itemView.findViewById(R.id.textdate);
-//                }
-//
-//                // Set the formatted date
-//                textDate.setText(formattedDate);
-//            }
-
-
             textUsername.setText("Complainant: " + issue.getUsername());
             //textStatus.setText(issue.getStatus());
             //textSolver.setText(issue.getSolver());

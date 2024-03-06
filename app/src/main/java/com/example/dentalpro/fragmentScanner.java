@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,16 +22,26 @@ import com.google.firebase.database.ValueEventListener;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class fragmentScanner extends Fragment {
 
     Button btn_scan;
     View view;
+    String userEmail;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_scanner, container, false);
         btn_scan = view.findViewById(R.id.btn_scan);
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+             userEmail = currentUser.getEmail(); // Use email as the unique identifier
+        }
 
         btn_scan.setOnClickListener(v -> {
             scanCode();
@@ -55,16 +64,6 @@ public class fragmentScanner extends Fragment {
     {
         if(result.getContents()!=null)
         {
-//            androidx.appcompat.app.AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-//            builder.setTitle("Result");
-//            builder.setMessage(result.getContents());
-//            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    dialogInterface.dismiss();
-//
-//                }
-//            }).show();
             String scannedBarcode = result.getContents();
             retrieveMedicationData(scannedBarcode);
         }
@@ -84,6 +83,7 @@ public class fragmentScanner extends Fragment {
                         if (medication != null) {
                             // Display AlertDialog for Quantity Editing
                             showQuantityEditDialog(medication);
+
                             return;
                         }
                     }
@@ -135,10 +135,10 @@ public class fragmentScanner extends Fragment {
                                 medication.setQuantity(updatedQuantity);
                                 updateQuantityInDatabase(medication.getName(), updatedQuantity);
 
-                                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                                String userEmail = currentUser.getEmail();
+//                                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+//                                String userEmail = currentUser.getEmail();
 
-                                updateIntoRecord(medication.getName(), updatedQuantity, userEmail);
+                                updateIntoRecord(medication.getName(), newQuantity);
 
                                 dialogInterface.dismiss();
                             } else {
@@ -185,43 +185,65 @@ public class fragmentScanner extends Fragment {
         });
     }
 
-    private void updateIntoRecord(String scannedBarcode, int usedQuantity, String userEmail) {
+    private void updateIntoRecord(String scannedBarcode, int usedQuantity) {
+//        FirebaseAuth auth = FirebaseAuth.getInstance();
+//        FirebaseUser currentUser = auth.getCurrentUser();
+//        if (currentUser != null) {
+//            String userEmail = currentUser.getEmail(); // Use email as the unique identifier
+//
+//            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("User");
+//
+//            // Query users by email
+//            usersRef.orderByChild("email").equalTo(userEmail).addListenerForSingleValueEvent(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+//                        User user = userSnapshot.getValue(User.class);
+//
+//                        if (user != null) {
+//                            Record record = new Record();
+//                            record.setUsername(user.getEmail()); // replace with the actual username
+//                            record.setName(scannedBarcode);
+//                            record.setQuantityR(String.valueOf(usedQuantity)); // assuming quantityR is a string
+//                            // Capture the current date
+//                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+//                            String currentDate = dateFormat.format(new Date());
+//                            record.setDate(currentDate);
+//
+//                            // Push the record to the "Records" node in the database
+//                            DatabaseReference recordsRef = FirebaseDatabase.getInstance().getReference().child("Record");
+//                            recordsRef.push().setValue(record)
+//                                    .addOnSuccessListener(aVoid -> showAlert("Record updated successfully"))
+//                                    .addOnFailureListener(e -> showAlert("Error updating record"));
+//
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//                    // Handle errors
+//                }
+//            });
+//        }
 
-        // Use email as the unique identifier
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("User");
-
-        // Query users by email
-        usersRef.orderByChild("email").equalTo(userEmail).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-                    User user = userSnapshot.getValue(User.class);
-
-                    // Display user data in the EditText fields
-                    if (user != null) {
-
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//
                         Record record = new Record();
-                        record.setUsername(user.getUsername()); // replace with the actual username
+                        //record.setUsername(userEmail); // replace with the actual username
                         record.setName(scannedBarcode);
                         record.setQuantityR(String.valueOf(usedQuantity)); // assuming quantityR is a string
+                        // Capture the current date
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                        String currentDate = dateFormat.format(new Date());
+                        record.setDate(currentDate);
 
                         // Push the record to the "Records" node in the database
                         DatabaseReference recordsRef = FirebaseDatabase.getInstance().getReference().child("Record");
-                        recordsRef.push().setValue(record);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle errors
-            }
-        });
-
-
+                        recordsRef.push().setValue(record)
+                                .addOnSuccessListener(aVoid -> showAlert("Record updated successfully"))
+                                .addOnFailureListener(e -> showAlert("Error updating record"));
 
     }
-
-
 
 }

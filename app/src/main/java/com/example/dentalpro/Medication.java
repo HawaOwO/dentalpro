@@ -5,7 +5,9 @@ public class Medication {
     private String name;
     private int quantity;
     private String details;
-    private String expiryDate;
+    private String month;
+    private String day;
+    private String year;
 
     private String medPicture;
 
@@ -43,12 +45,28 @@ public class Medication {
         this.details = details;
     }
 
-    public String getExpiryDate() {
-        return expiryDate;
+    public String getMonth() {
+        return month;
     }
 
-    public void setExpiryDate(String expiryDate) {
-        this.expiryDate = expiryDate;
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public String getMedPicture() {

@@ -20,8 +20,8 @@ public class MainActivity2 extends AppCompatActivity {
     ImageView btn_gotoissue;
     ImageView btn_gotoprofile;
     ImageView btn_logout;
-    //ImageView btn_noti;
-    ImageView btn_analytic;
+    ImageView btn_remind;
+    //ImageView btn_record;
     TextView mainText;
 
 
@@ -36,8 +36,8 @@ public class MainActivity2 extends AppCompatActivity {
         btn_gotoprofile= findViewById(R.id.profileicon);
         btn_gotoscan = findViewById(R.id.scanicon);
         btn_logout = findViewById(R.id.backicon);
-        btn_analytic = findViewById(R.id.analyticicon);
-        //btn_noti = findViewById(R.id.notificationicon);
+        //btn_record = findViewById(R.id.analyticicon);
+        btn_remind = findViewById(R.id.notificationicon);
         mainText= findViewById(R.id.textViewMain);
 
 //        btn_gotoscan.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +48,17 @@ public class MainActivity2 extends AppCompatActivity {
 //                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 //            }
 //        });
+
+        btn_remind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showReminderDialog();
+            }
+        });
+
+        replaceFragment(new fragmentHome());
+        mainText.setText("Home");
+
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -94,5 +105,10 @@ public class MainActivity2 extends AppCompatActivity {
         FragmentTransaction  fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame1, fragment);
         fragmentTransaction.commit();
+    }
+
+    private void showReminderDialog() {
+        ReminderDialog dialog = new ReminderDialog();
+        dialog.show(getSupportFragmentManager(), "ReminderDialog");
     }
 }

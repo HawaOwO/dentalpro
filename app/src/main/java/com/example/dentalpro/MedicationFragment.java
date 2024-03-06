@@ -6,6 +6,7 @@ import static android.app.Activity.RESULT_OK;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -145,12 +146,11 @@ public class MedicationFragment extends Fragment {
 
 
     // ViewHolder class for each item
-    private static class MedicationViewHolder extends RecyclerView.ViewHolder {
+    protected static class MedicationViewHolder extends RecyclerView.ViewHolder {
 
         TextView textName, textQuantity, textDetails, textExpirydate, textType;
         Button btnEdit, btnDelete;
         ImageView imageView;
-
 
         private String tabletKey;
 
@@ -167,6 +167,7 @@ public class MedicationFragment extends Fragment {
 
             imageView=itemView.findViewById(R.id.imageMed);
 
+
             //textType = itemView.findViewById(R.id.textType);
 
         }
@@ -175,14 +176,30 @@ public class MedicationFragment extends Fragment {
             textName.setText("Medicine Name: " + medication.getName());
             textQuantity.setText(String.valueOf("Quantity: " + medication.getQuantity()));
             textDetails.setText("Description: " + medication.getDetails());
-            textExpirydate.setText("Expiry Date: " + medication.getExpiryDate());
+            // Assuming issue.getDay(), issue.getMonth(), and issue.getYear() are strings
+            String day = medication.getDay();
+            String month = medication.getMonth();
+            String year = medication.getYear();
+
+            // Concatenate day, month, and year into a single string
+            String formattedDate = day + " " + month + " " + year;
+
+            // Set the formatted date to the textDate TextView
+            textExpirydate.setText("Expiry Date: " + formattedDate);
             //textType.setText(medication.getType());
             // Bind other attributes here
              // Declare a final variable
             tabletKey=key;
 
-            if (medication.getMedPicture()!=null) {
-                // Load image from URL using Picasso
+//            if (medication.getMedPicture()!=null) {
+//                // Load image from URL using Picasso
+//                Picasso.get().load(medication.getMedPicture()).into(imageView);
+//            } else {
+//                imageView.setImageResource(R.drawable.baseline_medication_24); // Replace with your default drawable resource
+//            }
+
+            // Check if medication.getMedPicture() is not empty or null before loading the image
+            if (!TextUtils.isEmpty(medication.getMedPicture())) {
                 Picasso.get().load(medication.getMedPicture()).into(imageView);
             } else {
                 imageView.setImageResource(R.drawable.baseline_medication_24); // Replace with your default drawable resource
@@ -200,17 +217,24 @@ public class MedicationFragment extends Fragment {
                     EditText name = dialogView.findViewById(R.id.txtName);
                     EditText quantity = dialogView.findViewById(R.id.txtQuantity);
                     EditText details = dialogView.findViewById(R.id.txtDetail);
-                    EditText expirydate = dialogView.findViewById(R.id.txtExpirydate);
+//                    EditText expirydate = dialogView.findViewById(R.id.txtExpirydate);
                     EditText medpic = dialogView.findViewById(R.id.txtMedPic);
                     Spinner spinnerType = dialogView.findViewById(R.id.spinnerType);
+                    EditText day=dialogView.findViewById(R.id.txtDay);
+                    EditText year = dialogView.findViewById(R.id.txtYear);
+                    Spinner spinnerMonth = dialogView.findViewById(R.id.spinnerMonth);
+
 
                     Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
+
 
                     name.setText(medication.getName());
                     quantity.setText(String.valueOf(medication.getQuantity()));
                     details.setText(medication.getDetails());
-                    expirydate.setText(medication.getExpiryDate());// Set data from the tablet object
+                    //expirydate.setText(medication.getExpiryDate());// Set data from the tablet object
                     medpic.setText(medication.getMedPicture());
+                    day.setText(medication.getDay());
+                    year.setText(medication.getYear());
 
                     // Set the selection for the Spinner based on the tablet's type
                     ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.type_array, android.R.layout.simple_spinner_item);
@@ -220,6 +244,16 @@ public class MedicationFragment extends Fragment {
                         int spinnerPosition = adapter.getPosition(medication.getType());
                         spinnerType.setSelection(spinnerPosition);
                     }
+
+                    // Set the selection for the Spinner based on the month
+                    ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.month_array, android.R.layout.simple_spinner_item);
+                    MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerMonth.setAdapter(MonthAdapter);
+                    if (medication.getMonth() != null) {
+                        int spinnerPosition = MonthAdapter.getPosition(medication.getMonth());
+                        spinnerMonth.setSelection(spinnerPosition);
+                    }
+
 
                     dialogPlus.show();
                     // Handle other views and actions as needed
@@ -232,9 +266,13 @@ public class MedicationFragment extends Fragment {
                             map.put("name", name.getText().toString());
                             map.put("quantity", updatedQuantity);
                             map.put("details", details.getText().toString());
-                            map.put("expiryDate", expirydate.getText().toString());
+                            //map.put("expiryDate", expirydate.getText().toString());
                             map.put("medPicture", medpic.getText().toString());
                             map.put("type", spinnerType.getSelectedItem().toString()); // Set the type
+                            map.put("day", day.getText().toString());
+                            map.put("year", year.getText().toString());
+                            map.put("month", spinnerMonth.getSelectedItem().toString());
+
 
 
                             FirebaseDatabase.getInstance().getReference().child("Medication")
@@ -289,35 +327,6 @@ public class MedicationFragment extends Fragment {
         }
     }
 
-//    // Add this method to update quantity based on barcode
-//    public void updateQuantity(String name) {
-//        DatabaseReference medicationRef = FirebaseDatabase.getInstance().getReference().child("Medication");
-//
-//        medicationRef.orderByChild("name").equalTo(name.toLowerCase()).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                    Medication medication = dataSnapshot.getValue(Medication.class);
-//                    if (medication != null) {
-//                        int currentQuantity = medication.getQuantity();
-//                        if (currentQuantity > 0) {
-//                            // Deduct one from the quantity
-//                            medicationRef.child(dataSnapshot.getKey()).child("quantity").setValue(currentQuantity - 1);
-//                            Toast.makeText(getActivity(), "Quantity Updated", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(getActivity(), "Medication out of stock", Toast.LENGTH_SHORT).show();
-//                        }
-//                    }
-//                }
-//                adapter.notifyDataSetChanged();
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//                Toast.makeText(getActivity(), "Error updating quantity", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
 }
 

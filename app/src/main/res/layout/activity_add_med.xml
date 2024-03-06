@@ -86,22 +86,59 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="20sp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:textColor="@color/brown"
         android:fontFamily="@font/alegreya_sc"
-        android:text="Expiry Date"/>
+        android:text="Expiring Date (dd/Month/yyyy)"/>
 
-    <EditText
+
+    <!-- Date Section -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/roundedpopup"
-        android:gravity="center"
-        android:textColor="@color/gray"
-        android:fontFamily="@font/alegreya_sc"
-        android:id="@+id/txtExpirydate" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/roundedpopup"
+            android:gravity="center"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
+            android:id="@+id/txtDay" />
+
+        <!-- Month -->
+        <Spinner
+            android:id="@+id/spinnerMonth"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/roundedpopup"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
+            android:gravity="center" />
+
+        <!-- Year -->
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/roundedpopup"
+            android:gravity="center"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
+            android:id="@+id/txtYear" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
