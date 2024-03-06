@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity2"
-    android:background="@drawable/main2pic3">
+    android:background="@drawable/bgverfeb">
 
     <ImageView
         android:id="@+id/homeicon"
@@ -73,6 +73,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_circle_notifications_24" />
 
+<!--    <ImageView-->
+<!--        android:id="@+id/analyticicon"-->
+<!--        android:layout_width="55dp"-->
+<!--        android:layout_height="55dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.983"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/backicon"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srcCompat="@drawable/baseline_analytics_24" />-->
+
     <TextView
         android:id="@+id/textViewMain"
         android:layout_width="300dp"
@@ -94,173 +105,14 @@
     <FrameLayout
         android:id="@+id/frame1"
         android:layout_width="400dp"
-        android:layout_height="650dp"
+        android:layout_height="580dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.493" />
-
-    <!--    <Button-->
-<!--        android:id="@+id/tablet"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="112dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="TABLET"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        app:cornerRadius="20dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/liquidint"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="LIQUID (INTERNAL USE)"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        app:cornerRadius="20dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/tablet" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/inhalation"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="INHALATIONS"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        app:cornerRadius="20dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/liquidint" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/eyedrop"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="EYE DROP/ OINTMENT"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        app:cornerRadius="20dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/inhalation" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/enema"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="Suppository/enema/pessary"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        app:cornerRadius="20dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/eyedrop" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/cream"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="Cream / lotion "-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        app:cornerRadius="20dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.0"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/enema"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/nosedrop" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/nosedrop"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="NOSE DROP/ SPRAY"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        app:cornerRadius="20dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.058"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/eyedrop"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/injection" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/injection"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="INJECTIONS"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        app:cornerRadius="20dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.058"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/inhalation"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/liquidext" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/liquidext"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="LIQUID (EXTERNAL USE)"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        app:cornerRadius="20dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.058"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/liquidint"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/capsule" />-->
-
-<!--    <Button-->
-<!--        android:id="@+id/capsule"-->
-<!--        android:layout_width="173dp"-->
-<!--        android:layout_height="77dp"-->
-<!--        android:layout_marginStart="24dp"-->
-<!--        android:layout_marginTop="112dp"-->
-<!--        android:backgroundTint="@color/white"-->
-<!--        android:fontFamily="@font/alegreya_sc"-->
-<!--        android:text="CAPSULE"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="16dp"-->
-<!--        app:cornerRadius="20dp"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.058"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/tablet"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+        app:layout_constraintVertical_bias="0.493"
+        android:background="@color/white"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

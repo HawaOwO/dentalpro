@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Update Issue"
-        android:background="@color/lavender"
+        android:background="@color/issueUnsolved"
         android:textSize="25dp"
         android:gravity="center"
+        android:fontFamily="@font/alegreya_sc"
         android:textColor="@color/white"/>
 
     <TextView
@@ -20,6 +27,8 @@
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
         android:text="Issue Name"/>
 
     <EditText
@@ -29,6 +38,8 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/alegreya_sc"
         android:id="@+id/txtName" />
 
     <TextView
@@ -38,6 +49,8 @@
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
         android:text="Username"/>
 
     <EditText
@@ -47,6 +60,8 @@
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/alegreya_sc"
         android:id="@+id/txtUsername" />
 
     <TextView
@@ -56,15 +71,19 @@
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
         android:text="Description"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="55dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/roundedpopup"
         android:gravity="center"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/alegreya_sc"
         android:id="@+id/txtDesc" />
 
     <TextView
@@ -74,35 +93,95 @@
         android:textSize="20sp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:text="Date"/>
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
+        android:text="Date (dd/Month/yyyy)"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/roundedpopup"
-        android:gravity="center"
-        android:id="@+id/txtDate" />
+<!--    <EditText-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="35dp"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:background="@drawable/roundedpopup"-->
+<!--        android:gravity="center"-->
+<!--        android:id="@+id/txtDate" />-->
 
-    <!-- Add the following code for the Type field using Spinner -->
-    <TextView
+    <!-- Date Section -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="Status"/>
+        android:orientation="horizontal">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/roundedpopup"
-        android:gravity="center"
-        android:id="@+id/txtStatus" />
+        <!-- Day -->
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:text="Date(dd/MM/yyyy)"/>-->
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/roundedpopup"
+            android:gravity="center"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
+            android:id="@+id/txtDay" />
+
+        <!-- Month -->
+        <Spinner
+            android:id="@+id/spinnerMonth"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/roundedpopup"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
+            android:gravity="center" />
+
+        <!-- Year -->
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/roundedpopup"
+            android:gravity="center"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
+            android:id="@+id/txtYear" />
+
+    </LinearLayout>
+
+        <!-- Add the following code for the Type field using Spinner -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/brown"
+            android:fontFamily="@font/alegreya_sc"
+            android:text="Status"/>
+
+        <Spinner
+            android:id="@+id/spinnerStatus"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/roundedpopup"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/alegreya_sc"
+            android:gravity="center" />
 
     <Button
         android:layout_width="match_parent"
@@ -113,9 +192,12 @@
         android:text="Update"
         android:textSize="21dp"
         android:textAllCaps="false"
-        android:background="@drawable/roundedpopup"
         android:gravity="center"
+        android:backgroundTint="@color/issueUnsolved"
+        android:textColor="@color/white"
+        android:fontFamily="@font/alegreya_sc"
         android:id="@+id/btnUpdate"/>
 
 
 </LinearLayout>
+</ScrollView>

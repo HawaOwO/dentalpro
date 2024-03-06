@@ -25,6 +25,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class Login extends AppCompatActivity {
@@ -77,15 +82,50 @@ public class Login extends AppCompatActivity {
                 fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            Toast.makeText(Login.this, "Welcome back user", Toast.LENGTH_SHORT).show();
+//
+//                            String userEmail = fAuth.getCurrentUser().getEmail();
+//                            retrieveUserDataFromDatabase(userEmail);
+//                            startActivity(new Intent(getApplicationContext(), MainActivity2.class));
+//
+//                        } else {
+//                            Toast.makeText(Login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                            progressBar.setVisibility(View.GONE);
+//                        }
                         if (task.isSuccessful()) {
-                            Toast.makeText(Login.this, "Welcome back user", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity2.class));
-                        } else {
-                            Toast.makeText(Login.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
+                            // Step 2: Retrieve user's email from authenticated user
+                            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                            if (currentUser != null) {
+                                String userEmail = currentUser.getEmail();
 
+                                // Step 3: Query Realtime Database to get additional user information
+                                DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("User");
+                                usersRef.orderByChild("email").equalTo(userEmail).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                                            User user = userSnapshot.getValue(User.class);
+
+                                            // Now 'user' contains the additional information from the Realtime Database
+
+                                            Toast.makeText(Login.this, "Welcome back, " + user.getUsername(), Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(getApplicationContext(), MainActivity2.class));
+                                            progressBar.setVisibility(View.GONE);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                        // Handle errors
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                });
+                            }
+                        }
                     }
+
+
                 });
 
             }
@@ -103,6 +143,9 @@ public class Login extends AppCompatActivity {
 //                SignInWithGoogle();
 //            }
 //        });
+
+
+
     }
 //    private void SignInWithGoogle() {
 //        Intent intent = gsc.getSignInIntent();
@@ -147,6 +190,40 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
+
+//    private void retrieveUserDataFromDatabase(String userEmail) {
+//        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User");
+//
+//        // Use orderByChild and equalTo to find the user with the matching email
+//        userRef.orderByChild("email").equalTo(userEmail).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                // Iterate through the results (there should be only one result)
+//                for (DataSnapshot userSnapshot : dataSnapshot.getChildren()) {
+//                    User user = userSnapshot.getValue(User.class);
+//
+//                    // Now you have the additional user data (username, number, role)
+//                    if (user != null) {
+//                        String username = user.getUsername();
+//                        String firstName = user.getFirstName();
+//                        String lastName = user.getLastName();
+//                        String email = user.getEmail();
+//                        String phone = user.getPhone();
+//                        String role = user.getRole();
+//                        String profilePicture = user.getProfilePicture();
+//
+//
+//                        // Do something with the additional user data
+//                    }
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                // Handle errors
+//            }
+//        });
+//    }
 
 
 }

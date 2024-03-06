@@ -1,15 +1,192 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lavender"
-    tools:context=".fragmentProfile">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="@color/white"
+        tools:context=".fragmentProfile">
+    <!-- Add New Issue TextView -->
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="50dp"
+        android:text="Profile"
+        android:background="@color/lavender"
+        android:textSize="25dp"
+        android:gravity="center"
+        android:fontFamily="@font/alegreya_sc"
+        android:textColor="@color/white"/>
 
-</FrameLayout>
+    <!-- Profile Image -->
+    <ImageView
+        android:id="@+id/profile"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:background="@drawable/circle_shape"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        app:srcCompat="@drawable/profile2" />
+
+    <!-- Username -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
+        android:text="Username"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/roundedpopup"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/alegreya_sc"
+        android:id="@+id/txtUsername" />
+
+    <!-- Email -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
+        android:text="Email"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/roundedpopup"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/alegreya_sc"
+        android:id="@+id/txtEmail" />
+
+    <!-- Phone number -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
+        android:text="Phone number"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/roundedpopup"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/alegreya_sc"
+        android:id="@+id/txtPNumber" />
+
+    <!-- Password -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
+        android:text="New Password"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/roundedpopup"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:id="@+id/txtPassword"
+        android:fontFamily="@font/alegreya_sc"
+        android:inputType="textPassword"/>
+
+    <!-- Picture -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/brown"
+        android:fontFamily="@font/alegreya_sc"
+        android:text="Profile Picture URL"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/roundedpopup"
+        android:gravity="center"
+        android:textColor="@color/gray"
+        android:fontFamily="@font/alegreya_sc"
+        android:id="@+id/txtPic" />
+
+    <!-- Update Button and Update Password Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+    <!-- Update Button -->
+    <Button
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:text="Update Profile"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/lavender"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:fontFamily="@font/alegreya_sc"
+        android:id="@+id/btnUpdate"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="Update Password"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:backgroundTint="@color/green1"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:fontFamily="@font/alegreya_sc"
+        android:id="@+id/btnUpdatePw"/>
+    </LinearLayout>
+
+
+</LinearLayout>
+</ScrollView>

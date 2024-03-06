@@ -7,7 +7,9 @@
     android:padding="16dp"
     app:cardCornerRadius="6dp"
     android:elevation="6dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:backgroundTint="@color/white"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,51 +21,65 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Medicine name"
-
-            />
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
 
         <TextView
             android:id="@+id/textquantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medicine quantity"
-            android:layout_below="@+id/textName"/>
+            android:layout_below="@+id/textName"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
+
 
         <TextView
             android:id="@+id/textdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medicine details"
-            android:layout_below="@+id/textquantity"/>
+            android:layout_below="@+id/textquantity"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
+
 
         <TextView
             android:id="@+id/textexpiryDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Medicine expiry date"
-            android:layout_below="@+id/textdetails"/>
+            android:layout_below="@+id/textdetails"
+            android:textColor="@color/black"
+            android:textSize="16dp"/>
 
-        <TextView
-            android:id="@+id/textType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Medicine Type"
-            android:layout_below="@+id/textexpiryDate" />
 
+<!--        <TextView-->
+<!--            android:id="@+id/textType"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Medicine Type"-->
+<!--            android:layout_below="@+id/textexpiryDate" />-->
 
         <LinearLayout
         android:layout_below= "@+id/textexpiryDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
 
             <Button
+                android:id="@+id/btnEdit"
                 android:layout_width="173dp"
                 android:layout_height="wrap_content"
-                android:text="Edit"
                 android:layout_marginRight="5dp"
+                android:text="Edit"
+                android:backgroundTint="@color/green1"
+                android:textColor="@color/white"
                 android:textAllCaps="false"
-                android:id="@+id/btnEdit"/>
+                />
 
             <Button
                 android:layout_width="173dp"
@@ -71,9 +87,27 @@
                 android:text="Delete"
                 android:layout_marginLeft="5dp"
                 android:textAllCaps="false"
-                android:id="@+id/btnDelete"/>
+                android:id="@+id/btnDelete"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/lavender"/>
 
         </LinearLayout>
+        <!-- Smooth square on the right -->
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:background="@color/green1">
+
+            <!-- ImageView for the image -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_medication_24"
+                android:id="@+id/imageMed"/>
+
+        </RelativeLayout>
     </RelativeLayout>
 
 

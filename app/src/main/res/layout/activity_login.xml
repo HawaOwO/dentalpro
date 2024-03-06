@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/medbg"
+    android:background="@drawable/signindesign"
     tools:context=".Login">
 
     <EditText
@@ -21,25 +21,9 @@
         android:textColorHint="#326373"
         app:layout_constraintBottom_toTopOf="@+id/Password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.569"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.892" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_extrabold"
-        android:text="Sign In"
-        android:textColor="#265AA8"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/Email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.861" />
+        app:layout_constraintVertical_bias="0.894" />
 
     <!--    <Button-->
 <!--        android:id="@+id/button3"-->
@@ -68,6 +52,21 @@
 <!--        app:layout_constraintTop_toTopOf="parent"-->
 <!--        app:layout_constraintVertical_bias="0.684" />-->
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_extrabold"
+        android:text="Welcome Back"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.654" />
+
     <EditText
         android:id="@+id/Password"
         android:layout_width="325dp"
@@ -91,7 +90,10 @@
         android:layout_width="313dp"
         android:layout_height="53dp"
         android:layout_marginBottom="204dp"
-        android:backgroundTint="#265AA8"
+        android:fontFamily="@font/poppins_extrabold"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
         android:text="Log In"
         android:textColorHint="#326373"
         app:cornerRadius="20dp"

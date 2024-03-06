@@ -30,8 +30,8 @@
 
     <Button
         android:id="@+id/btn_scan"
-        android:layout_width="285dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -41,6 +41,7 @@
         android:layout_marginEnd="63dp"
         android:layout_marginBottom="512dp"
         android:fontFamily="@font/alegreya_sc"
+        android:backgroundTint="@color/lavender"
         android:text="Scan Here"
         app:cornerRadius="20dp" />
 

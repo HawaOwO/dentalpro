@@ -9,14 +9,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -61,6 +65,8 @@ public class fragmentIssue extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull IssueViewHolder holder, int position, @NonNull Issue model) {
                 // Bind Issue object to the ViewHolder
+                //int backgroundColor = R.color.issue;
+                //holder.cardView.setBackgroundResource(backgroundColor);
                 holder.bindIssue(model, position, getRef(position).getKey());
             }
 
@@ -137,9 +143,11 @@ public class fragmentIssue extends Fragment {
     // ViewHolder class for each item
     private static class IssueViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textName, textDescription, textDate, textCreator, textStatus;
+        TextView textName, textDescription, textDate, textUsername, textStatus, textSolver;
         Button btnEdit, btnDelete;
         View statusIndicator;
+        CardView cardView;
+        ImageView imageView;
 
         private String issueKey;
 
@@ -149,25 +157,45 @@ public class fragmentIssue extends Fragment {
             textName = itemView.findViewById(R.id.textname);
             textDescription = itemView.findViewById(R.id.textdesc);
             textDate = itemView.findViewById(R.id.textdate);
-            textCreator = itemView.findViewById(R.id.textcreator);
-            textStatus= itemView.findViewById(R.id.textstatus);
+            textUsername = itemView.findViewById(R.id.textcreator);
+            //textStatus= itemView.findViewById(R.id.textstatus);
+            //textSolver=itemView.findViewById(R.id.textsolver);
 
             // Initialize other TextViews and the statusIndicator here
 
             btnEdit = itemView.findViewById(R.id.btnEdit);
             btnDelete = itemView.findViewById(R.id.btnDelete);
 //            statusIndicator = itemView.findViewById(R.id.statusIndicator);
+
+            cardView = itemView.findViewById(R.id.cardView); // Initialize cardView
+            imageView= itemView.findViewById(R.id.imageStatus);
         }
 
         public void bindIssue(Issue issue, int position, String key) {
             textName.setText(issue.getName());
-            textDescription.setText(issue.getDescription());
-            textDate.setText(issue.getDate());
-            textCreator.setText(issue.getUsername());
-            textStatus.setText(issue.getStatus());
+            textDescription.setText("Description: " +issue.getDescription());
+            textUsername.setText("Complainant: " + issue.getUsername());
+            //textStatus.setText(issue.getStatus());
+            //textSolver.setText(issue.getSolver());
+
+            // Assuming issue.getDay(), issue.getMonth(), and issue.getYear() are strings
+            String day = issue.getDay();
+            String month = issue.getMonth();
+            String year = issue.getYear();
+
+            // Concatenate day, month, and year into a single string
+            String formattedDate = day + " " + month + " " + year;
+
+            // Set the formatted date to the textDate TextView
+            textDate.setText("Date: " + formattedDate);
 
             // Bind other attributes here
             issueKey = key;
+            if ("UNSOLVED".equals(issue.getStatus())) {
+                imageView.setImageResource(R.drawable.baseline_priority_high_24); // Replace with your drawable resource for UNSOLVED status
+            } else {
+                imageView.setImageResource(R.drawable.baseline_check_circle_24); // Replace with your default drawable resource
+            }
             // Set the status indicator color based on the 'status' value
 //            statusIndicator.setBackgroundResource((issue.getStatus() == 0) ? R.drawable.circle_red : R.drawable.circle_green);
 
@@ -182,18 +210,47 @@ public class fragmentIssue extends Fragment {
                     // For example, if you have an EditText in your dialog layout:
                     EditText name = dialogView.findViewById(R.id.txtName);
                     EditText description = dialogView.findViewById(R.id.txtDesc);
-                    EditText date = dialogView.findViewById(R.id.txtDate);
-                    EditText creator = dialogView.findViewById(R.id.txtUsername);
-                    EditText status = dialogView.findViewById(R.id.txtStatus);
-//                    Spinner spinnerType = dialogView.findViewById(R.id.spinnerType);
+                    //EditText date = dialogView.findViewById(R.id.txtDate);
+                    EditText day=dialogView.findViewById(R.id.txtDay);
+                    EditText year = dialogView.findViewById(R.id.txtYear);
+                    EditText username = dialogView.findViewById(R.id.txtUsername);
+                    //EditText status = dialogView.findViewById(R.id.txtStatus);
+                    Spinner spinnerStatus = dialogView.findViewById(R.id.spinnerStatus);
+                    Spinner spinnerMonth = dialogView.findViewById(R.id.spinnerMonth);
+
 
                     Button btnUpdate = dialogView.findViewById(R.id.btnUpdate);
 
                     name.setText(issue.getName());
                     description.setText(String.valueOf(issue.getDescription()));
-                    date.setText(issue.getDate());
-                    creator.setText(issue.getUsername());
-                    status.setText(issue.getStatus());
+                    //date.setText(issue.getDate());
+//                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+//                    String formattedDateTime = dateFormat.format(issue.getDate());
+//                    date.setText(formattedDateTime);
+
+                    day.setText(issue.getDay());
+                    year.setText(issue.getYear());
+
+                    username.setText(issue.getUsername());
+//                    status.setText(issue.getStatus());
+                    // Set the selection for the Spinner based on the status
+                    ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.status_array, android.R.layout.simple_spinner_item);
+                    statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerStatus.setAdapter(statusAdapter);
+                    if (issue.getStatus() != null) {
+                        int spinnerPosition = statusAdapter.getPosition(issue.getStatus());
+                        spinnerStatus.setSelection(spinnerPosition);
+                    }
+
+                    // Set the selection for the Spinner based on the month
+                    ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.month_array, android.R.layout.simple_spinner_item);
+                    MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinnerMonth.setAdapter(MonthAdapter);
+                    if (issue.getMonth() != null) {
+                        int spinnerPosition = MonthAdapter.getPosition(issue.getMonth());
+                        spinnerMonth.setSelection(spinnerPosition);
+                    }
+
 
 
                     dialogPlus.show();
@@ -205,10 +262,37 @@ public class fragmentIssue extends Fragment {
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name.getText().toString());
                             map.put("description", description.getText().toString());
-                            map.put("date", date.getText().toString());
-                            map.put("creator", creator.getText().toString());
-                            map.put("status", status.getText().toString());
+                            map.put("day", day.getText().toString());
+                            map.put("year", year.getText().toString());
+                            map.put("username", username.getText().toString());
+                            map.put("status", spinnerStatus.getSelectedItem().toString());
+                            map.put("month", spinnerMonth.getSelectedItem().toString());
 
+                            // Check if the status is set to "SOLVED" and update the solver accordingly
+//                            if ("SOLVED".equals(spinnerStatus.getSelectedItem().toString())) {
+//
+//                                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+//                                if (currentUser != null) {
+//                                    String userEmail = currentUser.getEmail();
+//
+//                                    // Create an instance of the User class using the constructor that takes an email
+//                                    User currentUserInstance = new User(userEmail);
+//                                    map.put("solver", currentUserInstance.getUsername());
+//                                }
+//
+//                            }
+//                            if ("SOLVED".equals(spinnerStatus.getSelectedItem().toString())) {
+//                                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+//                                if (currentUser != null) {
+//                                    String userEmail = currentUser.getEmail();
+//                                    // Create an instance of the User class using the constructor that takes an email
+//                                    User currentUserInstance = new User(userEmail);
+//
+//                                    // Assuming User class has a method getUsername()
+//                                    String solverUsername = currentUserInstance.getUsername();
+//                                    map.put("solver", solverUsername);
+//                                }
+//                            }
 
 
                             FirebaseDatabase.getInstance().getReference().child("Issue")

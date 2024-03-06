@@ -4,29 +4,34 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp"
     app:cardCornerRadius="6dp"
     android:elevation="6dp"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    android:backgroundTint="@color/issue"
+    android:id="@+id/cardView">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:padding="15dp"
+        android:layout_marginBottom="8dp">
 
         <TextView
             android:id="@+id/textname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Issue Name"
-
-            />
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
 
         <TextView
             android:id="@+id/textdesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Issue description"
+            android:textSize="16dp"
+            android:textColor="@color/black"
             android:layout_below="@+id/textname"/>
 
         <TextView
@@ -34,21 +39,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Issue date"
-            android:layout_below="@+id/textdesc"/>
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/textcreator"/>
 
         <TextView
             android:id="@+id/textcreator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="User who create the issue"
-            android:layout_below="@+id/textdate"/>
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_below="@+id/textdesc"/>
 
-        <TextView
-            android:id="@+id/textstatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Status"
-            android:layout_below="@+id/textcreator"/>
+<!--        <TextView-->
+<!--            android:id="@+id/textstatus"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Status"-->
+<!--            android:layout_below="@+id/textdate"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/textsolver"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Solver username"-->
+<!--            android:layout_below="@+id/textstatus"/>-->
 
 <!--        &lt;!&ndash; Add a small View for the status indicator &ndash;&gt;-->
 <!--        <View-->
@@ -62,10 +78,12 @@
 
 
         <LinearLayout
-            android:layout_below= "@+id/textstatus"
+            android:layout_below= "@+id/textdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
 
             <Button
                 android:layout_width="173dp"
@@ -73,7 +91,9 @@
                 android:text="Edit"
                 android:layout_marginRight="5dp"
                 android:textAllCaps="false"
-                android:id="@+id/btnEdit"/>
+                android:id="@+id/btnEdit"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/white"/>
 
             <Button
                 android:layout_width="173dp"
@@ -81,9 +101,28 @@
                 android:text="Delete"
                 android:layout_marginLeft="5dp"
                 android:textAllCaps="false"
-                android:id="@+id/btnDelete"/>
+                android:id="@+id/btnDelete"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/red"/>
 
         </LinearLayout>
+
+        <!-- Smooth square on the right -->
+        <RelativeLayout
+            android:layout_width="70dp"
+            android:layout_height="80dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:background="@color/issue2">
+
+            <!-- ImageView for the image -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/baseline_priority_high_24"
+                android:id="@+id/imageStatus"/>
+
+        </RelativeLayout>
     </RelativeLayout>
 
 

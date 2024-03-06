@@ -14,6 +14,10 @@
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/alegreya_sc"
         android:text="Scan Here"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/lavender"
+        android:textStyle="bold"
+        android:textSize="20dp"
         app:cornerRadius="25dp" />
 
     <ImageView
