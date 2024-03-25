@@ -1,7 +1,7 @@
 package com.example.dentalpro;
 
 public class Record {
-//    private String username;
+    private String username;
     private String name;
     private String date;
     private String quantityR;
@@ -10,13 +10,13 @@ public class Record {
 
     }
 
-//    public String getUsername() {
-//        return username;
-//    }
-//
-//    public void setUsername(String Username) {
-//        this.username = username;
-//    }
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String Username) {
+        this.username = username;
+    }
     public String getName() {
         return name;
     }

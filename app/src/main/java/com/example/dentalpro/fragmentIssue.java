@@ -5,11 +5,11 @@ import static android.app.Activity.RESULT_OK;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -141,7 +141,7 @@ public class fragmentIssue extends Fragment {
 
 
     // ViewHolder class for each item
-    private static class IssueViewHolder extends RecyclerView.ViewHolder {
+    private class IssueViewHolder extends RecyclerView.ViewHolder {
 
         TextView textName, textDescription, textDate, textUsername, textStatus, textSolver;
         Button btnEdit, btnDelete;
@@ -234,23 +234,35 @@ public class fragmentIssue extends Fragment {
                     username.setText(issue.getUsername());
 //                    status.setText(issue.getStatus());
                     // Set the selection for the Spinner based on the status
-                    ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.status_array, android.R.layout.simple_spinner_item);
-                    statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerStatus.setAdapter(statusAdapter);
+//                    ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.status_array, android.R.layout.simple_spinner_item);
+//                    statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    spinnerStatus.setAdapter(statusAdapter);
+
+                    Spinner spinnerStatusk = dialogView.findViewById(R.id.spinnerStatus);
+                    String[] statusArray = getResources().getStringArray(R.array.status_array);
+                    int[] colorsS = {Color.BLACK};
+
+                    CustomArrayAdapter adapterS = new CustomArrayAdapter(itemView.getContext(), android.R.layout.simple_spinner_item, statusArray, colorsS);
+                    spinnerStatusk.setAdapter(adapterS);
                     if (issue.getStatus() != null) {
-                        int spinnerPosition = statusAdapter.getPosition(issue.getStatus());
+                        int spinnerPosition = adapterS.getPosition(issue.getStatus());
                         spinnerStatus.setSelection(spinnerPosition);
                     }
 
                     // Set the selection for the Spinner based on the month
-                    ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.month_array, android.R.layout.simple_spinner_item);
-                    MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerMonth.setAdapter(MonthAdapter);
-                    if (issue.getMonth() != null) {
-                        int spinnerPosition = MonthAdapter.getPosition(issue.getMonth());
-                        spinnerMonth.setSelection(spinnerPosition);
-                    }
+//                    ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.month_array, android.R.layout.simple_spinner_item);
+//                    MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    Spinner spinnerMonthk = dialogView.findViewById(R.id.spinnerMonth);
+                    String[] monthArray = getResources().getStringArray(R.array.month_array);
+                    int[] colors = {Color.BLACK};
 
+                    CustomArrayAdapter adapter = new CustomArrayAdapter(itemView.getContext(), android.R.layout.simple_spinner_item, monthArray, colors);
+                    spinnerMonthk.setAdapter(adapter);
+
+                    if (issue.getMonth() != null) {
+                        int spinnerPosition = adapter.getPosition(issue.getMonth());
+                        spinnerMonthk.setSelection(spinnerPosition);
+                    }
 
 
                     dialogPlus.show();

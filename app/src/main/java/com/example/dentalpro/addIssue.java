@@ -1,5 +1,6 @@
 package com.example.dentalpro;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -48,7 +49,11 @@ public class addIssue extends AppCompatActivity {
         // Set the selection for the Spinner based on the month
         ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(addIssue.this, R.array.month_array, android.R.layout.simple_spinner_item);
         MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerMonth.setAdapter(MonthAdapter);
+        //spinnerMonth.setAdapter(MonthAdapter);
+        // Set the custom adapter for the spinner
+        spinnerMonth.setAdapter(new CustomArrayAdapter(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.month_array), new int[]{Color.BLACK}));
+
+
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override

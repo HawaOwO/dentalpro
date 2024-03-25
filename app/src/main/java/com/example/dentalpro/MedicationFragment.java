@@ -5,12 +5,12 @@ import static android.app.Activity.RESULT_OK;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -146,7 +146,7 @@ public class MedicationFragment extends Fragment {
 
 
     // ViewHolder class for each item
-    protected static class MedicationViewHolder extends RecyclerView.ViewHolder {
+    protected class MedicationViewHolder extends RecyclerView.ViewHolder {
 
         TextView textName, textQuantity, textDetails, textExpirydate, textType;
         Button btnEdit, btnDelete;
@@ -237,22 +237,47 @@ public class MedicationFragment extends Fragment {
                     year.setText(medication.getYear());
 
                     // Set the selection for the Spinner based on the tablet's type
-                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.type_array, android.R.layout.simple_spinner_item);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerType.setAdapter(adapter);
-                    if (medication.getType() != null) {
-                        int spinnerPosition = adapter.getPosition(medication.getType());
-                        spinnerType.setSelection(spinnerPosition);
+//                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.type_array, android.R.layout.simple_spinner_item);
+//                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    spinnerType.setAdapter(adapter);
+//                    if (medication.getType() != null) {
+//                        int spinnerPosition = adapter.getPosition(medication.getType());
+//                        spinnerType.setSelection(spinnerPosition);
+//                    }
+
+                    Spinner spinnerTypek = dialogView.findViewById(R.id.spinnerType);
+                    String[] typeArray = getResources().getStringArray(R.array.type_array);
+                    int[] colorsT = {Color.BLACK};
+
+                    CustomArrayAdapter adapterT = new CustomArrayAdapter(itemView.getContext(), android.R.layout.simple_spinner_item, typeArray, colorsT);
+                    spinnerTypek.setAdapter(adapterT);
+
+                    if (medication.getMonth() != null) {
+                        int spinnerPosition = adapterT.getPosition(medication.getType());
+                        spinnerTypek.setSelection(spinnerPosition);
                     }
 
                     // Set the selection for the Spinner based on the month
-                    ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.month_array, android.R.layout.simple_spinner_item);
-                    MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerMonth.setAdapter(MonthAdapter);
+//                    ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.month_array, android.R.layout.simple_spinner_item);
+//                    MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    spinnerMonth.setAdapter(MonthAdapter);
+//                    if (medication.getMonth() != null) {
+//                        int spinnerPosition = MonthAdapter.getPosition(medication.getMonth());
+//                        spinnerMonth.setSelection(spinnerPosition);
+//                    }
+
+                    Spinner spinnerMonthk = dialogView.findViewById(R.id.spinnerMonth);
+                    String[] monthArray = getResources().getStringArray(R.array.month_array);
+                    int[] colors = {Color.BLACK};
+
+                    CustomArrayAdapter adapterM = new CustomArrayAdapter(itemView.getContext(), android.R.layout.simple_spinner_item, monthArray, colors);
+                    spinnerMonthk.setAdapter(adapterM);
+
                     if (medication.getMonth() != null) {
-                        int spinnerPosition = MonthAdapter.getPosition(medication.getMonth());
-                        spinnerMonth.setSelection(spinnerPosition);
+                        int spinnerPosition = adapterM.getPosition(medication.getMonth());
+                        spinnerMonthk.setSelection(spinnerPosition);
                     }
+
 
 
                     dialogPlus.show();
