@@ -299,7 +299,7 @@ public class MedicationFragment extends Fragment {
                             String yearText = year.getText().toString();
 
                             if (TextUtils.isEmpty(nameText) || TextUtils.isEmpty(quantityText) ||
-                                    TextUtils.isEmpty(detailsText) || TextUtils.isEmpty(medpicText) ||
+                                    TextUtils.isEmpty(detailsText) ||
                                     TextUtils.isEmpty(dayText) || TextUtils.isEmpty(yearText)) {
                                 Toast.makeText(itemView.getContext(), "All fields are required", Toast.LENGTH_SHORT).show();
                                 return;

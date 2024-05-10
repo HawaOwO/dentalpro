@@ -111,7 +111,7 @@ public class addMed extends AppCompatActivity {
         String yearText = year.getText().toString();
 
         if (TextUtils.isEmpty(nameText) || TextUtils.isEmpty(quantityText) ||
-                TextUtils.isEmpty(detailText) || TextUtils.isEmpty(medPictureText) ||
+                TextUtils.isEmpty(detailText) ||
                 TextUtils.isEmpty(dayText) || TextUtils.isEmpty(yearText)) {
             Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
             return;

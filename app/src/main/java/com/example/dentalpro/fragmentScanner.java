@@ -71,25 +71,57 @@ public class fragmentScanner extends Fragment {
         }
     });
 
+//    private void retrieveMedicationData(String scannedBarcode) {
+//        DatabaseReference medicationsRef = FirebaseDatabase.getInstance().getReference().child("Medication");
+//
+//        // Query medications by name (assuming name is the unique identifier)
+//        medicationsRef.orderByChild("name").equalTo(scannedBarcode).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.exists()) {
+//                    // Medication found
+//                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                        Medication medication = snapshot.getValue(Medication.class);
+//                        if (medication != null) {
+//                            // Display AlertDialog for Quantity Editing
+//                            showQuantityEditDialog(medication);
+//
+//                            return;
+//                        }
+//                    }
+//                } else {
+//                    // Medication not found for scanned barcode
+//                    showAlert("Medication not found for scanned barcode");
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Handle errors
+//                showAlert("Error retrieving medication data");
+//            }
+//        });
+//    }
+
     private void retrieveMedicationData(String scannedBarcode) {
         DatabaseReference medicationsRef = FirebaseDatabase.getInstance().getReference().child("Medication");
 
-        // Query medications by name (assuming name is the unique identifier)
-        medicationsRef.orderByChild("name").equalTo(scannedBarcode).addListenerForSingleValueEvent(new ValueEventListener() {
+        medicationsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Medication found
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Medication medication = snapshot.getValue(Medication.class);
-                        if (medication != null) {
+                boolean medicationFound = false;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Medication medication = snapshot.getValue(Medication.class);
+                    if (medication != null) {
+                        // Check if the medication name is a case-insensitive match or if it contains the scanned barcode
+                        if (scannedBarcode.toLowerCase(Locale.getDefault()).contains(medication.getName().toLowerCase(Locale.getDefault()))) {                            medicationFound = true;
                             // Display AlertDialog for Quantity Editing
                             showQuantityEditDialog(medication);
-
-                            return;
+                            break;
                         }
                     }
-                } else {
+                }
+                if (!medicationFound) {
                     // Medication not found for scanned barcode
                     showAlert("Medication not found for scanned barcode");
                 }
@@ -102,6 +134,7 @@ public class fragmentScanner extends Fragment {
             }
         });
     }
+
 
     private void showAlert(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
