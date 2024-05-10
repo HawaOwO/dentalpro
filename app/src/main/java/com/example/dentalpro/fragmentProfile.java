@@ -23,6 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class fragmentProfile extends Fragment {
 
     private DatabaseReference databaseReference;
@@ -128,10 +131,28 @@ public class fragmentProfile extends Fragment {
                         // Update user data
                         if (user != null) {
                             user.setUsername(txtUsername.getText().toString());
+                            String phoneNumber = txtPhoneNumber.getText().toString();
+
+                            // Perform phone number validation
+                            if (!phoneNumber.matches("\\d+")) {
+                                // Phone number contains non-numeric characters
+                                txtPhoneNumber.setError("Invalid phone number");
+                                return;
+                            }
                             user.setPhone(txtPhoneNumber.getText().toString());
-                            user.setProfilePicture(txtNewPicture.getText().toString());
+                            //user.setProfilePicture(txtNewPicture.getText().toString());
                             // Update other fields as needed
 
+                            String profilePictureUrl = txtNewPicture.getText().toString();
+
+                            // Check if the URL is valid
+                            if (!isValidUrl(profilePictureUrl)) {
+                                // Invalid URL
+                                txtNewPicture.setError("Invalid URL");
+                                return;
+                            }
+
+                            user.setProfilePicture(profilePictureUrl);
                             // Save changes to the database
                             userSnapshot.getRef().setValue(user);
                             Toast.makeText(requireContext(), "Data Updated Successfully", Toast.LENGTH_SHORT).show();
@@ -149,9 +170,17 @@ public class fragmentProfile extends Fragment {
     }
     // Add a new method for updating the password
     private void updatePassword() {
+        String newPassword = txtNewPassword.getText().toString();
+
+        // Perform password validation
+        if (newPassword.length() < 8) {
+            txtNewPassword.setError("Password must be at least 8 characters long");
+            return;
+        }
+
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
-            String newPassword = txtNewPassword.getText().toString();
+            //String newPassword = txtNewPassword.getText().toString();
 
             currentUser.updatePassword(newPassword)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -166,5 +195,17 @@ public class fragmentProfile extends Fragment {
                     });
         }
     }
+
+    private boolean isValidUrl(String urlString) {
+        try {
+            URL url = new URL(urlString);
+            // The URL is valid if no exception is thrown
+            return true;
+        } catch (MalformedURLException e) {
+            // The URL is invalid
+            return false;
+        }
+    }
+
 
 }

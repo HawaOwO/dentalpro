@@ -36,6 +36,8 @@ import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.squareup.picasso.Picasso;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -285,7 +287,49 @@ public class MedicationFragment extends Fragment {
                     btnUpdate.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v){
-                            int updatedQuantity= Integer.parseInt(quantity.getText().toString());
+                            //int updatedQuantity= Integer.parseInt(quantity.getText().toString());
+
+                            //validation
+                            // Perform validation for each field
+                            String nameText = name.getText().toString();
+                            String quantityText = quantity.getText().toString();
+                            String detailsText = details.getText().toString();
+                            String medpicText = medpic.getText().toString();
+                            String dayText = day.getText().toString();
+                            String yearText = year.getText().toString();
+
+                            if (TextUtils.isEmpty(nameText) || TextUtils.isEmpty(quantityText) ||
+                                    TextUtils.isEmpty(detailsText) || TextUtils.isEmpty(medpicText) ||
+                                    TextUtils.isEmpty(dayText) || TextUtils.isEmpty(yearText)) {
+                                Toast.makeText(itemView.getContext(), "All fields are required", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            // Check if the URL is valid
+                            if (!isValidUrl(medpicText)) {
+                                // Invalid URL
+                                medpic.setError("Invalid URL");
+                                return;
+                            }
+
+                            int updatedQuantity;
+                            try {
+                                updatedQuantity = Integer.parseInt(quantityText);
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(itemView.getContext(), "Quantity must be a valid number", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            int dayValue, yearValue;
+                            try {
+                                dayValue = Integer.parseInt(dayText);
+                                yearValue = Integer.parseInt(yearText);
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(itemView.getContext(), "Day and year must be valid numbers", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            //
 
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name.getText().toString());
@@ -352,6 +396,15 @@ public class MedicationFragment extends Fragment {
         }
     }
 
-
+    private boolean isValidUrl(String urlString) {
+        try {
+            URL url = new URL(urlString);
+            // The URL is valid if no exception is thrown
+            return true;
+        } catch (MalformedURLException e) {
+            // The URL is invalid
+            return false;
+        }
+    }
 }
 

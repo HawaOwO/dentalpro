@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:padding="16dp">
+
+    <!-- TextView for column 1 -->
+    <TextView
+        android:id="@+id/textViewColumn1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:text="Column 1" />
+
+    <!-- TextView for column 2 -->
+    <TextView
+        android:id="@+id/textViewColumn2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:text="Column 2" />
+
+    <!-- TextView for column 3 -->
+    <TextView
+        android:id="@+id/textViewColumn3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:text="Column 3" />
+
+</LinearLayout>

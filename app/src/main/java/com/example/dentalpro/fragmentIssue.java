@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -270,6 +271,35 @@ public class fragmentIssue extends Fragment {
                     btnUpdate.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v){
+
+                            //validation
+
+                            // Check if any of the required fields are empty
+                            String nameText = name.getText().toString();
+                            String usernameText = username.getText().toString();
+                            String descriptionText = description.getText().toString();
+                            String dayText = day.getText().toString();
+                            String yearText = year.getText().toString();
+
+                            if (TextUtils.isEmpty(nameText) || TextUtils.isEmpty(usernameText) ||
+                                    TextUtils.isEmpty(descriptionText) ||
+                                    TextUtils.isEmpty(dayText) || TextUtils.isEmpty(yearText)) {
+                                Toast.makeText(itemView.getContext(),  "All fields are required", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            // Check if day and year are valid numbers
+                            int dayValue, yearValue;
+                            try {
+                                dayValue = Integer.parseInt(dayText);
+                                yearValue = Integer.parseInt(yearText);
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(itemView.getContext(),  "Day and year must be valid numbers", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+
+                            //
 
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name.getText().toString());

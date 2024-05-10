@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    tools:context=".fragmentReport">
+
+    <!-- Date picker container -->
+    <LinearLayout
+        android:id="@+id/datePickerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Date picker for start date and end date in a horizontal row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Start date picker -->
+            <EditText
+                android:id="@+id/startDateEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/green1"
+                android:focusable="false"
+                android:hint="  Start Date"
+                android:textColor="@color/white"
+                android:textColorHint="#FFFFFF" />
+
+            <!-- End date picker -->
+            <EditText
+                android:id="@+id/endDateEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:background="@color/green1"
+                android:focusable="false"
+                android:hint="  End Date"
+                android:textColor="@color/white"
+                android:textColorHint="#FFFFFF" />
+
+        </LinearLayout>
+
+        <!-- Text area -->
+        <TextView
+            android:id="@+id/textViewPopular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  Most Used Medicines :"
+            android:textStyle="bold"
+            android:layout_marginTop="18dp"
+            android:textColor="@color/black"
+            android:paddingTop="16dp" />
+
+        <!-- Text area for column description -->
+        <TextView
+            android:id="@+id/textViewColumnDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:textStyle="bold"
+            android:text="  Records of usage"
+            android:background="@color/issueUnsolved"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <!-- RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/datePickerContainer"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</RelativeLayout>

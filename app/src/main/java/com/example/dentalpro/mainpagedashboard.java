@@ -29,6 +29,7 @@ public class mainpagedashboard extends Fragment {
         Button scannerButton = rootView.findViewById(R.id.scanner);
         Button issueButton = rootView.findViewById(R.id.feedback);
         Button profileButton = rootView.findViewById(R.id.profile);
+        Button downloadButton= rootView.findViewById(R.id.download);
 
         ImageSlider imageSlider = rootView.findViewById(R.id.imageSlider);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
@@ -71,6 +72,14 @@ public class mainpagedashboard extends Fragment {
             public void onClick(View v) {
                 // Replace the current fragment with the fragmentProfile
                 replaceFragment(new fragmentProfile());
+            }
+        });
+
+        downloadButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // View report
+                replaceFragment(new fragmentReport());
             }
         });
 

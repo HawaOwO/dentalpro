@@ -122,6 +122,9 @@ public class Login extends AppCompatActivity {
                                     }
                                 });
                             }
+                        }else {
+                            Toast.makeText(Login.this, "Invalid credentials or account doesn't exist", Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
                         }
                     }
 

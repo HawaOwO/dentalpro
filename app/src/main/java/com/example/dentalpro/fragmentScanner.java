@@ -203,7 +203,7 @@ public class fragmentScanner extends Fragment {
                         if (user != null) {
                             String username = user.getUsername();
                             Record record = new Record();
-                            record.setUsername(username); // replace with the actual username
+                            // replace with the actual username
                             record.setName(scannedBarcode);
                             record.setQuantityR(String.valueOf(usedQuantity)); // assuming quantityR is a string
                             // Capture the current date

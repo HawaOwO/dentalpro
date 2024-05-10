@@ -2,6 +2,7 @@ package com.example.dentalpro;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -74,6 +75,34 @@ public class addIssue extends AppCompatActivity {
 
     private void insertData() {
 
+        //validation
+
+        // Check if any of the required fields are empty
+        String nameText = name.getText().toString();
+        String usernameText = username.getText().toString();
+        String descriptionText = description.getText().toString();
+        String dayText = day.getText().toString();
+        String yearText = year.getText().toString();
+
+        if (TextUtils.isEmpty(nameText) || TextUtils.isEmpty(usernameText) ||
+                TextUtils.isEmpty(descriptionText) ||
+                TextUtils.isEmpty(dayText) || TextUtils.isEmpty(yearText)) {
+            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Check if day and year are valid numbers
+        int dayValue, yearValue;
+        try {
+            dayValue = Integer.parseInt(dayText);
+            yearValue = Integer.parseInt(yearText);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Day and year must be valid numbers", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        //
         Map<String, Object> map = new HashMap<>();
         map.put("name", name.getText().toString());
         map.put("username", username.getText().toString());
