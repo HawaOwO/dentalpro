@@ -18,4 +18,5 @@
     <color name="issue">#FDEBEB</color>
     <color name="issue2">#EABEBB</color>
     <color name="month">#95385D</color>
+    <color name="divider_color">#95385D</color>
 </resources>

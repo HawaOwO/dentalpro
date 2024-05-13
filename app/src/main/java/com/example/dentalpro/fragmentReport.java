@@ -171,7 +171,7 @@ public class fragmentReport extends Fragment {
 
     // ViewHolder class for each item
     private static class ReportViewHolder extends RecyclerView.ViewHolder {
-        TextView textName, textDate, textQuantity;
+        TextView textName, textDate, textQuantity, textUser;
 
         public ReportViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -179,12 +179,18 @@ public class fragmentReport extends Fragment {
             textName = itemView.findViewById(R.id.textViewColumn1);
             textDate = itemView.findViewById(R.id.textViewColumn2);
             textQuantity = itemView.findViewById(R.id.textViewColumn3);
+            textUser = itemView.findViewById(R.id.textViewColumn4);
         }
 
         public void bindReport(Record report) {
-            textName.setText("Name: " + report.getName());
-            textDate.setText("Date: " + report.getDate());
-            textQuantity.setText("Quantity: " + report.getQuantityR());
+//            textName.setText("Name: " + report.getName());
+//            textDate.setText("Date: " + report.getDate());
+//            textQuantity.setText("Quantity: " + report.getQuantityR());
+//            textUser.setText("User: " + report.getEmail());
+            textName.setText(report.getName());
+            textDate.setText(report.getDate());
+            textQuantity.setText(report.getQuantityR());
+            textUser.setText(report.getEmail());
         }
     }
 }

@@ -6,9 +6,12 @@ public class Record {
     private String date;
     private String quantityR;
 
-    public Record(){
+    private String email;
+
+    public Record() {
 
     }
+
     public String getName() {
         return name;
     }
@@ -32,4 +35,14 @@ public class Record {
     public void setQuantityR(String quantityR) {
         this.quantityR = quantityR;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
+
+

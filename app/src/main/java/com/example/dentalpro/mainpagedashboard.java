@@ -188,7 +188,7 @@ public class mainpagedashboard extends Fragment {
                             // Deserialize the Medication object
                             Medication medication = snapshot.getValue(Medication.class);
                             // Check if the quantity is less than 20
-                            if (medication.getQuantity() < 20) {
+                            if (medication.getQuantity() <= 20) {
                                 medOutOfStock++; // Increment count if quantity is less than 20
                             }
                         }

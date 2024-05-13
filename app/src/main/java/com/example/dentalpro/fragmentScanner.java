@@ -234,9 +234,10 @@ public class fragmentScanner extends Fragment {
                     User user = snapshot.getValue(User.class);
 
                         if (user != null) {
-                            String username = user.getUsername();
+                            //String useremail = user.getEmail();
                             Record record = new Record();
                             // replace with the actual username
+                            record.setEmail(userEmail);
                             record.setName(scannedBarcode);
                             record.setQuantityR(String.valueOf(usedQuantity)); // assuming quantityR is a string
                             // Capture the current date

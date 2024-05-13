@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@color/white"
-    android:padding="16dp">
+    android:divider="@color/divider_color"
+    android:showDividers="middle">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_color"
+            android:width="2dp"/>
 
     <!-- TextView for column 1 -->
     <TextView
@@ -13,9 +23,14 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textColor="@color/black"
-        android:textStyle="bold"
+        android:gravity="center"
         android:textSize="16dp"
-        android:text="Column 1" />
+        android:text="  Column 1" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_color" />
 
     <!-- TextView for column 2 -->
     <TextView
@@ -24,8 +39,14 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textColor="@color/black"
+        android:gravity="center"
         android:textSize="16dp"
-        android:text="Column 2" />
+        android:text="  Column 2" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_color" />
 
     <!-- TextView for column 3 -->
     <TextView
@@ -34,7 +55,37 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textColor="@color/black"
+        android:gravity="center"
         android:textSize="16dp"
-        android:text="Column 3" />
+        android:text="  Column 3" />
 
-</LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_color" />
+
+    <!-- TextView for column 4 -->
+    <TextView
+        android:id="@+id/textViewColumn4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:text="  Column 4"
+        android:padding="16dp"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/divider_color" />
+    </TableRow>
+
+    <!-- Divider after first row -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/divider_color" />
+
+</TableLayout>
