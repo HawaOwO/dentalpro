@@ -183,10 +183,7 @@ public class fragmentReport extends Fragment {
         }
 
         public void bindReport(Record report) {
-//            textName.setText("Name: " + report.getName());
-//            textDate.setText("Date: " + report.getDate());
-//            textQuantity.setText("Quantity: " + report.getQuantityR());
-//            textUser.setText("User: " + report.getEmail());
+
             textName.setText(report.getName());
             textDate.setText(report.getDate());
             textQuantity.setText(report.getQuantityR());

@@ -71,37 +71,6 @@ public class fragmentScanner extends Fragment {
         }
     });
 
-//    private void retrieveMedicationData(String scannedBarcode) {
-//        DatabaseReference medicationsRef = FirebaseDatabase.getInstance().getReference().child("Medication");
-//
-//        // Query medications by name (assuming name is the unique identifier)
-//        medicationsRef.orderByChild("name").equalTo(scannedBarcode).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists()) {
-//                    // Medication found
-//                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                        Medication medication = snapshot.getValue(Medication.class);
-//                        if (medication != null) {
-//                            // Display AlertDialog for Quantity Editing
-//                            showQuantityEditDialog(medication);
-//
-//                            return;
-//                        }
-//                    }
-//                } else {
-//                    // Medication not found for scanned barcode
-//                    showAlert("Medication not found for scanned barcode");
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Handle errors
-//                showAlert("Error retrieving medication data");
-//            }
-//        });
-//    }
 
     private void retrieveMedicationData(String scannedBarcode) {
         DatabaseReference medicationsRef = FirebaseDatabase.getInstance().getReference().child("Medication");
@@ -234,7 +203,7 @@ public class fragmentScanner extends Fragment {
                     User user = snapshot.getValue(User.class);
 
                         if (user != null) {
-                            //String useremail = user.getEmail();
+
                             Record record = new Record();
                             // replace with the actual username
                             record.setEmail(userEmail);
@@ -264,24 +233,6 @@ public class fragmentScanner extends Fragment {
             });
         }
 
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//                        Record record = new Record();
-//                        //record.setUsername(userEmail); // replace with the actual username
-//                        record.setName(scannedBarcode);
-//                        record.setQuantityR(String.valueOf(usedQuantity)); // assuming quantityR is a string
-//                        // Capture the current date
-//                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-//                        String currentDate = dateFormat.format(new Date());
-//                        record.setDate(currentDate);
-//
-//                        // Push the record to the "Records" node in the database
-//                        DatabaseReference recordsRef = FirebaseDatabase.getInstance().getReference().child("Record");
-//                        recordsRef.push().setValue(record)
-//                                .addOnSuccessListener(aVoid -> showAlert("Record updated successfully"))
-//                                .addOnFailureListener(e -> showAlert("Error updating record"));
-//
-//    }
 
     }
 }

@@ -31,6 +31,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
@@ -42,6 +44,8 @@ import java.util.Map;
 public class fragmentIssue extends Fragment {
     private DatabaseReference databaseReference;
     private FirebaseRecyclerAdapter<Issue, IssueViewHolder> adapter;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,6 +59,7 @@ public class fragmentIssue extends Fragment {
 
         // Set up Firebase Realtime Database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Issue");
+
 
         // Set up FirebaseUI adapter
         FirebaseRecyclerOptions<Issue> options =
