@@ -95,7 +95,6 @@ public class fragmentScanner extends Fragment {
                     showAlert("Medication not found for scanned barcode");
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle errors

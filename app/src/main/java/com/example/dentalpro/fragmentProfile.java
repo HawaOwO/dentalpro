@@ -100,7 +100,7 @@ public class fragmentProfile extends Fragment {
                                 Picasso.get().load(user.getProfilePicture()).into(profilepic);
                             } else {
                                 // Set a default image if no profile picture URL is available
-                                profilepic.setImageResource(R.drawable.baseline_person_24);
+                                profilepic.setImageResource(R.drawable.baseline_person_24white);
                             }
                             // Set other fields as needed
                         }

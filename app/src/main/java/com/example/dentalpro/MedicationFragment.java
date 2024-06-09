@@ -134,7 +134,7 @@ public class MedicationFragment extends Fragment {
         if (requestCode == 1) { // Assuming 1 is the requestCode you used when starting addMed
             if (resultCode == RESULT_OK) {
                 // Handle success
-                Toast.makeText(requireContext(), "Data Inserted Successfully2", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Data Inserted Successfully", Toast.LENGTH_SHORT).show();
                 // Refresh the data or perform any other necessary actions
                 adapter.notifyDataSetChanged();
             } else if (resultCode == RESULT_CANCELED) {
@@ -305,11 +305,13 @@ public class MedicationFragment extends Fragment {
                                 return;
                             }
 
-                            // Check if the URL is valid
-                            if (!isValidUrl(medpicText)) {
-                                // Invalid URL
-                                medpic.setError("Invalid URL");
-                                return;
+                            if(!TextUtils.isEmpty(medpicText)){
+                                // Check if the URL is valid
+                                if (!isValidUrl(medpicText)) {
+                                    // Invalid URL
+                                    medpic.setError("Invalid URL");
+                                    return;
+                                }
                             }
 
                             int updatedQuantity;

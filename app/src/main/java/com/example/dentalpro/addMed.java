@@ -126,11 +126,13 @@ public class addMed extends AppCompatActivity {
             return;
         }
 
-        // Check if the URL is valid
-        if (!isValidUrl(medPictureText)) {
-            // Invalid URL
-            medPicture.setError("Invalid URL");
-            return;
+        if(!TextUtils.isEmpty(medPictureText)){
+            // Check if the URL is valid
+            if (!isValidUrl(medPictureText)) {
+                // Invalid URL
+                medPicture.setError("Invalid URL");
+                return;
+            }
         }
 
         // Check if day and year are valid numbers
@@ -162,7 +164,6 @@ public class addMed extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        //Toast.makeText(name.getContext(), "Data Insert Succesfully1", Toast.LENGTH_SHORT).show();
                         // Set the result to indicate success
                         setResult(RESULT_OK);
                         finish();
