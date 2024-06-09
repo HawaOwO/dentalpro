@@ -5,12 +5,12 @@ import static android.app.Activity.RESULT_OK;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,6 +36,8 @@ import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
 import com.squareup.picasso.Picasso;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -132,7 +134,7 @@ public class MedicationFragment extends Fragment {
         if (requestCode == 1) { // Assuming 1 is the requestCode you used when starting addMed
             if (resultCode == RESULT_OK) {
                 // Handle success
-                Toast.makeText(requireContext(), "Data Inserted Successfully2", Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Data Inserted Successfully", Toast.LENGTH_SHORT).show();
                 // Refresh the data or perform any other necessary actions
                 adapter.notifyDataSetChanged();
             } else if (resultCode == RESULT_CANCELED) {
@@ -146,7 +148,7 @@ public class MedicationFragment extends Fragment {
 
 
     // ViewHolder class for each item
-    protected static class MedicationViewHolder extends RecyclerView.ViewHolder {
+    protected class MedicationViewHolder extends RecyclerView.ViewHolder {
 
         TextView textName, textQuantity, textDetails, textExpirydate, textType;
         Button btnEdit, btnDelete;
@@ -237,22 +239,47 @@ public class MedicationFragment extends Fragment {
                     year.setText(medication.getYear());
 
                     // Set the selection for the Spinner based on the tablet's type
-                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.type_array, android.R.layout.simple_spinner_item);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerType.setAdapter(adapter);
-                    if (medication.getType() != null) {
-                        int spinnerPosition = adapter.getPosition(medication.getType());
-                        spinnerType.setSelection(spinnerPosition);
+//                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.type_array, android.R.layout.simple_spinner_item);
+//                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    spinnerType.setAdapter(adapter);
+//                    if (medication.getType() != null) {
+//                        int spinnerPosition = adapter.getPosition(medication.getType());
+//                        spinnerType.setSelection(spinnerPosition);
+//                    }
+
+                    Spinner spinnerTypek = dialogView.findViewById(R.id.spinnerType);
+                    String[] typeArray = getResources().getStringArray(R.array.type_array);
+                    int[] colorsT = {Color.BLACK};
+
+                    CustomArrayAdapter adapterT = new CustomArrayAdapter(itemView.getContext(), android.R.layout.simple_spinner_item, typeArray, colorsT);
+                    spinnerTypek.setAdapter(adapterT);
+
+                    if (medication.getMonth() != null) {
+                        int spinnerPosition = adapterT.getPosition(medication.getType());
+                        spinnerTypek.setSelection(spinnerPosition);
                     }
 
                     // Set the selection for the Spinner based on the month
-                    ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.month_array, android.R.layout.simple_spinner_item);
-                    MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerMonth.setAdapter(MonthAdapter);
+//                    ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.month_array, android.R.layout.simple_spinner_item);
+//                    MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    spinnerMonth.setAdapter(MonthAdapter);
+//                    if (medication.getMonth() != null) {
+//                        int spinnerPosition = MonthAdapter.getPosition(medication.getMonth());
+//                        spinnerMonth.setSelection(spinnerPosition);
+//                    }
+
+                    Spinner spinnerMonthk = dialogView.findViewById(R.id.spinnerMonth);
+                    String[] monthArray = getResources().getStringArray(R.array.month_array);
+                    int[] colors = {Color.BLACK};
+
+                    CustomArrayAdapter adapterM = new CustomArrayAdapter(itemView.getContext(), android.R.layout.simple_spinner_item, monthArray, colors);
+                    spinnerMonthk.setAdapter(adapterM);
+
                     if (medication.getMonth() != null) {
-                        int spinnerPosition = MonthAdapter.getPosition(medication.getMonth());
-                        spinnerMonth.setSelection(spinnerPosition);
+                        int spinnerPosition = adapterM.getPosition(medication.getMonth());
+                        spinnerMonthk.setSelection(spinnerPosition);
                     }
+
 
 
                     dialogPlus.show();
@@ -260,7 +287,51 @@ public class MedicationFragment extends Fragment {
                     btnUpdate.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v){
-                            int updatedQuantity= Integer.parseInt(quantity.getText().toString());
+                            //int updatedQuantity= Integer.parseInt(quantity.getText().toString());
+
+                            //validation
+                            // Perform validation for each field
+                            String nameText = name.getText().toString();
+                            String quantityText = quantity.getText().toString();
+                            String detailsText = details.getText().toString();
+                            String medpicText = medpic.getText().toString();
+                            String dayText = day.getText().toString();
+                            String yearText = year.getText().toString();
+
+                            if (TextUtils.isEmpty(nameText) || TextUtils.isEmpty(quantityText) ||
+                                    TextUtils.isEmpty(detailsText) ||
+                                    TextUtils.isEmpty(dayText) || TextUtils.isEmpty(yearText)) {
+                                Toast.makeText(itemView.getContext(), "All fields are required", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            if(!TextUtils.isEmpty(medpicText)){
+                                // Check if the URL is valid
+                                if (!isValidUrl(medpicText)) {
+                                    // Invalid URL
+                                    medpic.setError("Invalid URL");
+                                    return;
+                                }
+                            }
+
+                            int updatedQuantity;
+                            try {
+                                updatedQuantity = Integer.parseInt(quantityText);
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(itemView.getContext(), "Quantity must be a valid number", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            int dayValue, yearValue;
+                            try {
+                                dayValue = Integer.parseInt(dayText);
+                                yearValue = Integer.parseInt(yearText);
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(itemView.getContext(), "Day and year must be valid numbers", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            //
 
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name.getText().toString());
@@ -327,6 +398,15 @@ public class MedicationFragment extends Fragment {
         }
     }
 
-
+    private boolean isValidUrl(String urlString) {
+        try {
+            URL url = new URL(urlString);
+            // The URL is valid if no exception is thrown
+            return true;
+        } catch (MalformedURLException e) {
+            // The URL is invalid
+            return false;
+        }
+    }
 }
 

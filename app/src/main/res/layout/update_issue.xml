@@ -143,7 +143,8 @@
             android:background="@drawable/roundedpopup"
             android:textColor="@color/gray"
             android:fontFamily="@font/alegreya_sc"
-            android:gravity="center" />
+            android:gravity="center"
+            />
 
         <!-- Year -->
         <EditText

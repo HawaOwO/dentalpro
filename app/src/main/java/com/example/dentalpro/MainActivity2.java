@@ -21,6 +21,7 @@ public class MainActivity2 extends AppCompatActivity {
     ImageView btn_gotoprofile;
     ImageView btn_logout;
     ImageView btn_remind;
+    ImageView btn_gotomed;
     //ImageView btn_record;
     TextView mainText;
 
@@ -32,18 +33,19 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
 
         btn_gotohome= findViewById(R.id.homeicon);
+        btn_gotomed=findViewById(R.id.medicon);
         btn_gotoissue = findViewById(R.id.issueicon);
         btn_gotoprofile= findViewById(R.id.profileicon);
         btn_gotoscan = findViewById(R.id.scanicon);
         btn_logout = findViewById(R.id.backicon);
         //btn_record = findViewById(R.id.analyticicon);
         btn_remind = findViewById(R.id.notificationicon);
-        mainText= findViewById(R.id.textViewMain);
+        //mainText= findViewById(R.id.textViewMain);
 
-//        btn_gotoscan.setOnClickListener(new View.OnClickListener() {
+//        btn_remind.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v){
-//                Intent intent = new Intent(MainActivity2.this, scanner.class);
+//                Intent intent = new Intent(MainActivity2.this, cardanaly.class);
 //                startActivity(intent);
 //                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 //            }
@@ -56,8 +58,16 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
-        replaceFragment(new fragmentHome());
-        mainText.setText("Home");
+//        btn_remind.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v){
+//                replaceFragment(new cardanaly());
+//                //mainText.setText("Home");
+//            }
+//        });
+
+        replaceFragment(new mainpagedashboard());
+        //mainText.setText("Home");
 
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,29 +82,37 @@ public class MainActivity2 extends AppCompatActivity {
         btn_gotohome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-               replaceFragment(new fragmentHome());
-               mainText.setText("Home");
+               replaceFragment(new mainpagedashboard());
+               //mainText.setText("Home");
+            }
+        });
+
+        btn_gotomed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                replaceFragment(new fragmentHome());
+                //mainText.setText("Home");
             }
         });
         btn_gotoscan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 replaceFragment(new fragmentScanner());
-                mainText.setText("Scanner");
+                //mainText.setText("Scanner");
             }
         });
         btn_gotoissue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 replaceFragment(new fragmentIssue());
-                mainText.setText("Issues");
+                //mainText.setText("Issues");
             }
         });
         btn_gotoprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 replaceFragment(new fragmentProfile());
-                mainText.setText("Profile");
+                //mainText.setText("Profile");
             }
         });
     }

@@ -5,11 +5,12 @@ import static android.app.Activity.RESULT_OK;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +31,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.orhanobut.dialogplus.DialogPlus;
@@ -41,6 +44,8 @@ import java.util.Map;
 public class fragmentIssue extends Fragment {
     private DatabaseReference databaseReference;
     private FirebaseRecyclerAdapter<Issue, IssueViewHolder> adapter;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,6 +59,7 @@ public class fragmentIssue extends Fragment {
 
         // Set up Firebase Realtime Database
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Issue");
+
 
         // Set up FirebaseUI adapter
         FirebaseRecyclerOptions<Issue> options =
@@ -141,7 +147,7 @@ public class fragmentIssue extends Fragment {
 
 
     // ViewHolder class for each item
-    private static class IssueViewHolder extends RecyclerView.ViewHolder {
+    private class IssueViewHolder extends RecyclerView.ViewHolder {
 
         TextView textName, textDescription, textDate, textUsername, textStatus, textSolver;
         Button btnEdit, btnDelete;
@@ -234,23 +240,35 @@ public class fragmentIssue extends Fragment {
                     username.setText(issue.getUsername());
 //                    status.setText(issue.getStatus());
                     // Set the selection for the Spinner based on the status
-                    ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.status_array, android.R.layout.simple_spinner_item);
-                    statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerStatus.setAdapter(statusAdapter);
+//                    ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.status_array, android.R.layout.simple_spinner_item);
+//                    statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    spinnerStatus.setAdapter(statusAdapter);
+
+                    Spinner spinnerStatusk = dialogView.findViewById(R.id.spinnerStatus);
+                    String[] statusArray = getResources().getStringArray(R.array.status_array);
+                    int[] colorsS = {Color.BLACK};
+
+                    CustomArrayAdapter adapterS = new CustomArrayAdapter(itemView.getContext(), android.R.layout.simple_spinner_item, statusArray, colorsS);
+                    spinnerStatusk.setAdapter(adapterS);
                     if (issue.getStatus() != null) {
-                        int spinnerPosition = statusAdapter.getPosition(issue.getStatus());
+                        int spinnerPosition = adapterS.getPosition(issue.getStatus());
                         spinnerStatus.setSelection(spinnerPosition);
                     }
 
                     // Set the selection for the Spinner based on the month
-                    ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.month_array, android.R.layout.simple_spinner_item);
-                    MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerMonth.setAdapter(MonthAdapter);
-                    if (issue.getMonth() != null) {
-                        int spinnerPosition = MonthAdapter.getPosition(issue.getMonth());
-                        spinnerMonth.setSelection(spinnerPosition);
-                    }
+//                    ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(itemView.getContext(), R.array.month_array, android.R.layout.simple_spinner_item);
+//                    MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    Spinner spinnerMonthk = dialogView.findViewById(R.id.spinnerMonth);
+                    String[] monthArray = getResources().getStringArray(R.array.month_array);
+                    int[] colors = {Color.BLACK};
 
+                    CustomArrayAdapter adapter = new CustomArrayAdapter(itemView.getContext(), android.R.layout.simple_spinner_item, monthArray, colors);
+                    spinnerMonthk.setAdapter(adapter);
+
+                    if (issue.getMonth() != null) {
+                        int spinnerPosition = adapter.getPosition(issue.getMonth());
+                        spinnerMonthk.setSelection(spinnerPosition);
+                    }
 
 
                     dialogPlus.show();
@@ -258,6 +276,35 @@ public class fragmentIssue extends Fragment {
                     btnUpdate.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v){
+
+                            //validation
+
+                            // Check if any of the required fields are empty
+                            String nameText = name.getText().toString();
+                            String usernameText = username.getText().toString();
+                            String descriptionText = description.getText().toString();
+                            String dayText = day.getText().toString();
+                            String yearText = year.getText().toString();
+
+                            if (TextUtils.isEmpty(nameText) || TextUtils.isEmpty(usernameText) ||
+                                    TextUtils.isEmpty(descriptionText) ||
+                                    TextUtils.isEmpty(dayText) || TextUtils.isEmpty(yearText)) {
+                                Toast.makeText(itemView.getContext(),  "All fields are required", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            // Check if day and year are valid numbers
+                            int dayValue, yearValue;
+                            try {
+                                dayValue = Integer.parseInt(dayText);
+                                yearValue = Integer.parseInt(yearText);
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(itemView.getContext(),  "Day and year must be valid numbers", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+
+                            //
 
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name.getText().toString());

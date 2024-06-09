@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,16 +32,17 @@ public class fragmentScanner extends Fragment {
     Button btn_scan;
     View view;
     String userEmail;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.fragment_scanner, container, false);
+        view = inflater.inflate(R.layout.fragment_scanner, container, false);
         btn_scan = view.findViewById(R.id.btn_scan);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
-             userEmail = currentUser.getEmail(); // Use email as the unique identifier
+            userEmail = currentUser.getEmail(); // Use email as the unique identifier
         }
 
         btn_scan.setOnClickListener(v -> {
@@ -49,6 +51,7 @@ public class fragmentScanner extends Fragment {
         return view;
 
     }
+
     private void scanCode() {
         ScanOptions options = new ScanOptions();
         options.setPrompt("Volume up to flash on");
@@ -62,37 +65,36 @@ public class fragmentScanner extends Fragment {
 
     ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result ->
     {
-        if(result.getContents()!=null)
-        {
+        if (result.getContents() != null) {
             String scannedBarcode = result.getContents();
             retrieveMedicationData(scannedBarcode);
         }
     });
 
+
     private void retrieveMedicationData(String scannedBarcode) {
         DatabaseReference medicationsRef = FirebaseDatabase.getInstance().getReference().child("Medication");
 
-        // Query medications by name (assuming name is the unique identifier)
-        medicationsRef.orderByChild("name").equalTo(scannedBarcode).addListenerForSingleValueEvent(new ValueEventListener() {
+        medicationsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    // Medication found
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Medication medication = snapshot.getValue(Medication.class);
-                        if (medication != null) {
+                boolean medicationFound = false;
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Medication medication = snapshot.getValue(Medication.class);
+                    if (medication != null) {
+                        // Check if the medication name is a case-insensitive match or if it contains the scanned barcode
+                        if (scannedBarcode.toLowerCase(Locale.getDefault()).contains(medication.getName().toLowerCase(Locale.getDefault()))) {                            medicationFound = true;
                             // Display AlertDialog for Quantity Editing
                             showQuantityEditDialog(medication);
-
-                            return;
+                            break;
                         }
                     }
-                } else {
+                }
+                if (!medicationFound) {
                     // Medication not found for scanned barcode
                     showAlert("Medication not found for scanned barcode");
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 // Handle errors
@@ -100,6 +102,7 @@ public class fragmentScanner extends Fragment {
             }
         });
     }
+
 
     private void showAlert(String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -169,7 +172,6 @@ public class fragmentScanner extends Fragment {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         String medicationKey = snapshot.getKey();
                         medicationsRef.child(medicationKey).child("quantity").setValue(updatedQuantity)
-                                .addOnSuccessListener(aVoid -> showAlert("Quantity updated successfully"))
                                 .addOnFailureListener(e -> showAlert("Error updating quantity"));
                         return;
                     }
@@ -186,64 +188,50 @@ public class fragmentScanner extends Fragment {
     }
 
     private void updateIntoRecord(String scannedBarcode, int usedQuantity) {
-//        FirebaseAuth auth = FirebaseAuth.getInstance();
-//        FirebaseUser currentUser = auth.getCurrentUser();
-//        if (currentUser != null) {
-//            String userEmail = currentUser.getEmail(); // Use email as the unique identifier
-//
-//            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("User");
-//
-//            // Query users by email
-//            usersRef.orderByChild("email").equalTo(userEmail).addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-//                        User user = userSnapshot.getValue(User.class);
-//
-//                        if (user != null) {
-//                            Record record = new Record();
-//                            record.setUsername(user.getEmail()); // replace with the actual username
-//                            record.setName(scannedBarcode);
-//                            record.setQuantityR(String.valueOf(usedQuantity)); // assuming quantityR is a string
-//                            // Capture the current date
-//                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-//                            String currentDate = dateFormat.format(new Date());
-//                            record.setDate(currentDate);
-//
-//                            // Push the record to the "Records" node in the database
-//                            DatabaseReference recordsRef = FirebaseDatabase.getInstance().getReference().child("Record");
-//                            recordsRef.push().setValue(record)
-//                                    .addOnSuccessListener(aVoid -> showAlert("Record updated successfully"))
-//                                    .addOnFailureListener(e -> showAlert("Error updating record"));
-//
-//                        }
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//                    // Handle errors
-//                }
-//            });
-//        }
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if (currentUser != null) {
+            String uid = currentUser.getUid(); // Use UID as the unique identifier
 
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//
-                        Record record = new Record();
-                        //record.setUsername(userEmail); // replace with the actual username
-                        record.setName(scannedBarcode);
-                        record.setQuantityR(String.valueOf(usedQuantity)); // assuming quantityR is a string
-                        // Capture the current date
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-                        String currentDate = dateFormat.format(new Date());
-                        record.setDate(currentDate);
+            DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("User").child(uid);
 
-                        // Push the record to the "Records" node in the database
-                        DatabaseReference recordsRef = FirebaseDatabase.getInstance().getReference().child("Record");
-                        recordsRef.push().setValue(record)
-                                .addOnSuccessListener(aVoid -> showAlert("Record updated successfully"))
-                                .addOnFailureListener(e -> showAlert("Error updating record"));
+            // Query users by username
+            usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    User user = snapshot.getValue(User.class);
+
+                        if (user != null) {
+
+                            Record record = new Record();
+                            // replace with the actual username
+                            record.setEmail(userEmail);
+                            record.setName(scannedBarcode);
+                            record.setQuantityR(String.valueOf(usedQuantity)); // assuming quantityR is a string
+                            // Capture the current date
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                            String currentDate = dateFormat.format(new Date());
+                            record.setDate(currentDate);
+
+                            // Push the record to the "Records" node in the database
+                            DatabaseReference recordsRef = FirebaseDatabase.getInstance().getReference().child("Record");
+                            recordsRef.push().setValue(record)
+                                    .addOnSuccessListener(aVoid -> showAlert("Record updated successfully"))
+                                    .addOnFailureListener(e -> showAlert("Error updating record"));
+
+                        }
+                        else {
+                            showAlert("Username not found for the current user");
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    // Handle errors
+                }
+            });
+        }
+
 
     }
-
 }

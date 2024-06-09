@@ -1,6 +1,8 @@
 package com.example.dentalpro;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,6 +17,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,12 +65,16 @@ public class addMed extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // Apply the adapter to the spinner
-        spinnerType.setAdapter(adapter);
+        //spinnerType.setAdapter(adapter);
+        spinnerType.setAdapter(new CustomArrayAdapter(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.type_array), new int[]{Color.BLACK}));
+
 
         // Set the selection for the Spinner based on the month
         ArrayAdapter<CharSequence> MonthAdapter = ArrayAdapter.createFromResource(addMed.this, R.array.month_array, android.R.layout.simple_spinner_item);
         MonthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerMonth.setAdapter(MonthAdapter);
+        //spinnerMonth.setAdapter(MonthAdapter);
+        spinnerMonth.setAdapter(new CustomArrayAdapter(this, android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.month_array), new int[]{Color.BLACK}));
+
 
 
         btnAdd.setOnClickListener(new View.OnClickListener(){
@@ -87,34 +95,58 @@ public class addMed extends AppCompatActivity {
             }
         });
     }
-//    // Method to show the DatePickerDialog
-//    public void showDatePickerDialog() {
-//        final Calendar currentDate = Calendar.getInstance();
-//        int year = currentDate.get(Calendar.YEAR);
-//        int month = currentDate.get(Calendar.MONTH);
-//        int day = currentDate.get(Calendar.DAY_OF_MONTH);
-//
-//        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-//            @Override
-//            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-//                selectedDate = Calendar.getInstance();
-//                selectedDate.set(Calendar.YEAR, year);
-//                selectedDate.set(Calendar.MONTH, monthOfYear);
-//                selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-//
-//                // Format the selected date and set it to the EditText
-//                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault());
-//                expirydate.setText(sdf.format(selectedDate.getTime()));
-//            }
-//        }, year, month, day);
-//
-//        datePickerDialog.show();
-//    }
 
     private void insertData()
     {
-        int updatedQuantity= Integer.parseInt(quantity.getText().toString());
+        //int updatedQuantity= Integer.parseInt(quantity.getText().toString());
 
+        //validation
+
+        // Check if any of the required fields are empty
+        String nameText = name.getText().toString();
+        String quantityText = quantity.getText().toString();
+        String detailText = detail.getText().toString();
+        String medPictureText = medPicture.getText().toString();
+        String dayText = day.getText().toString();
+        String yearText = year.getText().toString();
+
+        if (TextUtils.isEmpty(nameText) || TextUtils.isEmpty(quantityText) ||
+                TextUtils.isEmpty(detailText) ||
+                TextUtils.isEmpty(dayText) || TextUtils.isEmpty(yearText)) {
+            Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Check if quantity is a valid number
+        int updatedQuantity;
+        try {
+            updatedQuantity = Integer.parseInt(quantityText);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Quantity must be a valid number", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if(!TextUtils.isEmpty(medPictureText)){
+            // Check if the URL is valid
+            if (!isValidUrl(medPictureText)) {
+                // Invalid URL
+                medPicture.setError("Invalid URL");
+                return;
+            }
+        }
+
+        // Check if day and year are valid numbers
+        int dayValue, yearValue;
+        try {
+            dayValue = Integer.parseInt(dayText);
+            yearValue = Integer.parseInt(yearText);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Day and year must be valid numbers", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        //
         Map<String, Object> map = new HashMap<>();
         map.put("name", name.getText().toString());
         map.put("quantity", updatedQuantity);
@@ -132,7 +164,6 @@ public class addMed extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        //Toast.makeText(name.getContext(), "Data Insert Succesfully1", Toast.LENGTH_SHORT).show();
                         // Set the result to indicate success
                         setResult(RESULT_OK);
                         finish();
@@ -160,4 +191,14 @@ public class addMed extends AppCompatActivity {
         spinnerMonth.setSelection(0);
     }
 
+    private boolean isValidUrl(String urlString) {
+        try {
+            URL url = new URL(urlString);
+            // The URL is valid if no exception is thrown
+            return true;
+        } catch (MalformedURLException e) {
+            // The URL is invalid
+            return false;
+        }
+    }
 }

@@ -1,22 +1,17 @@
 package com.example.dentalpro;
 
 public class Record {
-//    private String username;
+
     private String name;
     private String date;
     private String quantityR;
 
-    public Record(){
+    private String email;
+
+    public Record() {
 
     }
 
-//    public String getUsername() {
-//        return username;
-//    }
-//
-//    public void setUsername(String Username) {
-//        this.username = username;
-//    }
     public String getName() {
         return name;
     }
@@ -40,4 +35,14 @@ public class Record {
     public void setQuantityR(String quantityR) {
         this.quantityR = quantityR;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
+
+

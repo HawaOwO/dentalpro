@@ -70,7 +70,7 @@ public class fragmentHome extends Fragment {
         t5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String selectedType = "SUPPOSITORY/ENEMA/PESSARY)"; // Set the selected type based on your logic
+                String selectedType = "SUPPOSITORY/ENEMA/PESSARY"; // Set the selected type based on your logic
                 MedicationFragment medicationFragment = new MedicationFragment();
                 changeFragment(medicationFragment, selectedType);
             }
